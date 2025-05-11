@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="https://i.ibb.co/XrD9y8Jq/e2072737-0213-4668-a900-77ac19758edb.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Chris Carroll</title>
+  <style>
+    body {
+      font-family: 'Helvetica', sans-serif;
+      background-color: #FFFFFF;
+      color: #333;
+      margin: 0;
+      padding: 40px 20px;
+      line-height: 1.8;
+      font-size: 14px;
+      text-transform: lowercase;
+    }
+
+    h1 {
+      font-size: 2em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      -webkit-text-stroke: 0.4px #808080;
+      color: transparent;
+      text-fill-color: transparent;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    p {
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    a {
+      color: #333;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    footer {
+      margin-top: 60px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      text-transform: lowercase;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>about</h1>
+
+  <p>
+    I am chris carroll, 25, artist who has hobbies of drawing and making music and I am focused most now on writing prose, poetry, books, and tweets. I am on 
+    <a href="https://twitter.com/ihavedisease" target="_blank">twitter</a>, 
+    <a href="https://www.instagram.com/pon_pon_desiree_oasis/" target="_blank">instagram</a>, 
+    <a href="https://chris1.substack.com/" target="_blank">substack</a>.
+  </p>
+
+  <footer>
+    <nav>
+      <ul>
+        <li><a href="index.html">home</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+</body>
+</html>
