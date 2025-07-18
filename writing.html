@@ -37,6 +37,14 @@
       top: -1in;
     }
 
+    /* Container to center content and limit width */
+    .content-container {
+      max-width: 700px;  /* or 680-720px as you like */
+      margin: 0 auto;    /* centers horizontally */
+      padding: 0 15px;   /* some side padding on small screens */
+      text-align: left;
+    }
+
     .story-title {
       font-size: 2.8em;
       font-weight: bold;
@@ -44,7 +52,7 @@
       color: transparent;
       -webkit-text-stroke: 0.5px #808080;
       margin: 80px 0 30px 0;
-      text-align: left;  /* changed from center to left */
+      text-align: left;  /* keep left aligned */
     }
 
     .poem-text {
@@ -52,14 +60,22 @@
       margin-top: 30px;
       line-height: 1.8;
       white-space: pre-wrap;
-      text-align: left;  /* changed from center to left */
+      text-align: left;  /* keep left aligned */
     }
 
-    /* Highlight ampersand */
+    /* Highlight all ampersands in poem-text */
+    .poem-text {
+      /* We'll highlight & using CSS :not selector */
+    }
+
+    /* Since you want all ampersands in yellow, let's do a span around them with JS or via CSS? 
+       CSS can't target characters directly, so best to do via JS here. */
+    
+    /* But let's define the ampersand highlight style for spans */
     .ampersand-highlight {
       color: #ffeb3b; /* bright yellow */
       font-weight: bold;
-      font-size: 2em;
+      font-size: 1.3em;
       user-select: none;
     }
 
@@ -100,8 +116,9 @@
     <h1>CHRIS CARROLL</h1>
   </header>
 
-  <div class="story-title">the people</div>
-  <div class="poem-text">
+  <div class="content-container">
+    <div class="story-title">the people</div>
+    <div class="poem-text" id="poem1">
 More people began wearing their shirts inside out. Well-to-do immigrants unknowingly wore “nonbinary” hats. San Francisco and Manhattan’s best techno-financial workers tripped on their basic, oppressive reality. They knew they had to, because anything else was too disgusting and confusing. So they ingested huge amounts of psilocybin and calmly asserted their abjection. I am growing into a beautiful man.
 
 “I am this awareness, the awareness of a human experience,” the rich young man thought while despondently holding his laptop in one hand and his phone in the other, all while wearing sandals.
@@ -115,10 +132,10 @@ The poor lived in excess and the rich were more desperate than ever. The concern
 My sweet trash smell entered the nostril as a gigantic light-up text display suggested reforestation as a solution to extending our five final years, but before I could nervously laugh the absurdity off, a worker’s ladder bonked my head and I saw Barbara Streisand young. So beautiful.
 
 -
-  </div>
+    </div>
 
-  <div class="story-title">we temporarily increased each other's sense of bravery</div>
-  <div class="poem-text">
+    <div class="story-title">we temporarily increased each other's sense of bravery</div>
+    <div class="poem-text" id="poem2">
 Children end up having creepy journeys into adulthood. They slowly reach towards senescence with clawing-like movements. Upon reaching maturation, they end up behaving in myriad ways that signal a breach, a betrayal of their childlike inanity. Reason, deep-anger, and otherworldly repressive forces all constitute the spiritual template of a man. Our protagonist, Cryss, rejects this paradigm and forcibly attempts a wrathful implantation of typically kiddish styles.
 	“I’m wearing pink pants like a kid,” he cries out while whipping back and forth on a swing, eventually circling over the top bar of the swingset. 
 	“I can fall off and not get hurt. Children have smaller terminal velocities. It’s hard for a child to die without the introduction of immense tragedy (which is usually avoidable anyway),” Cryss says in a calm, high-pitched voice, seemingly unaffected by his gyrating movements and grown up body.
@@ -208,12 +225,20 @@ I squelch back into the story. The reader and the sign went away with each other
 	
 	“Actually I disagree. I’m going to break up with you and write and publish a book of tweets I wrote while high on myriad substances. I consider divorce trauma a substance, also. Bye,” Cryss says.
 
+    </div>
   </div>
 
   <!-- Bottom right links -->
   <div class="bottom-links">
     <a href="index.html">home</a>
   </div>
+
+  <script>
+    // Wrap all ampersands in .poem-text divs with a span for styling
+    document.querySelectorAll('.poem-text').forEach(container => {
+      container.innerHTML = container.innerHTML.replace(/&/g, '<span class="ampersand-highlight">&</span>');
+    });
+  </script>
 
 </body>
 </html>
