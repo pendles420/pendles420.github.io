@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="https://i.ibb.co/XrD9y8Jq/e2072737-0213-4668-a900-77ac19758edb.jpg">
+  <link rel="icon" href="https://i.ibb.co/XrD9y8Jq/e2072737-0213-4668a900-77ac19758edb.jpg">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chris carroll's website</title>
+  <title>Chris Carroll's website</title>
   <style>
     body {
       font-family: 'Helvetica', sans-serif;
@@ -14,7 +14,7 @@
       padding: 40px 20px;
       line-height: 1.6;
       text-transform: lowercase;
-      font-size: 16.1px; /* increased by 15% */
+      font-size: 16.1px;
       overflow-x: hidden;
       display: flex;
       justify-content: center;
@@ -26,27 +26,25 @@
       padding: 0 20px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start; /* left align */
+      align-items: flex-start;
       gap: 50px;
     }
 
     header {
-      /* no big heading */
       width: 100%;
     }
 
     .sections-row {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       width: 100%;
       gap: 40px;
     }
 
     .section {
       color: #666;
-      /* Remove text stroke for normal text */
       padding-left: 10px;
-      width: 100%;
+      flex: 1;
     }
 
     .section-title {
@@ -59,12 +57,11 @@
       text-stroke: 0.5px #808080;
     }
 
-    /* Links styled as regular thin underlined text */
     .section a {
       text-decoration: underline;
       color: #666;
-      font-weight: normal; /* normal weight */
-      -webkit-text-stroke: 0; /* remove stroke */
+      font-weight: normal;
+      -webkit-text-stroke: 0;
       text-stroke: 0;
       display: block;
       margin-bottom: 5px;
@@ -73,7 +70,7 @@
 
     .section a:hover {
       color: #444;
-      text-decoration: underline; /* keep underline on hover */
+      text-decoration: underline;
     }
 
     nav {
@@ -88,7 +85,7 @@
       padding: 0;
       margin: 0;
       display: flex;
-      justify-content: flex-start; /* align left */
+      justify-content: flex-start;
       gap: 20px;
     }
 
@@ -99,7 +96,7 @@
     nav ul li a {
       text-decoration: underline;
       color: #666;
-      font-weight: normal; /* normal weight */
+      font-weight: normal;
       -webkit-text-stroke: 0;
       text-stroke: 0;
     }
@@ -120,7 +117,7 @@
   <div class="container">
 
     <header>
-      <!-- Big Chris Carroll heading removed -->
+      <!-- heading intentionally removed -->
     </header>
 
     <div class="sections-row">
@@ -140,7 +137,12 @@
         <a href="https://heartsoft.bandcamp.com/" target="_blank" rel="noopener noreferrer">Heartsoft project</a>
       </div>
 
-   
+      <!-- Other Section -->
+      <div class="section">
+        <div class="section-title">other</div>
+        <a href="https://chriscarroll.uk/photo.html" target="_blank" rel="noopener noreferrer">photos</a>
+      </div>
+
     </div>
 
     <div class="gif-container">
@@ -150,7 +152,7 @@
     <footer>
       <nav>
         <ul>
-          <!-- Home link removed as requested -->
+          <!-- No home link -->
         </ul>
       </nav>
     </footer>
