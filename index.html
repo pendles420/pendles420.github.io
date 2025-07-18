@@ -9,105 +9,69 @@
     body {
       font-family: 'Helvetica', sans-serif;
       background-color: #FFFFFF;
-      color: #333;
+      color: #666;
       margin: 0;
-      padding: 0 20px;
+      padding: 40px 20px;
       line-height: 1.6;
       text-transform: lowercase;
-      font-size: 14px;
+      font-size: 16.1px; /* increased by 15% */
       overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* left align */
+      gap: 50px;
     }
 
     header {
-      padding: 0;
-      margin: 0;
+      /* no big heading */
       width: 100%;
-      text-align: left;
-      overflow: hidden;
-      position: relative;
-      height: 100px;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 11em;
-      color: transparent;
-      font-weight: bold;
-      letter-spacing: 10px;
-      text-transform: uppercase;
+    .sections-row {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 40px;
+    }
+
+    .section {
+      color: #666;
       -webkit-text-stroke: 0.5px #808080;
       text-stroke: 0.5px #808080;
-      display: inline-block;
-      position: absolute;
-      left: -5px;
-      top: -1in;
-      -webkit-text-fill-color: transparent;
-      text-fill-color: transparent;
+      padding-left: 10px;
+      width: 100%;
     }
 
-    .website {
-      margin: 0;
-      font-size: 5em;
+    .section-title {
+      font-size: 2.35em;
       font-weight: bold;
-      letter-spacing: 5px;
+      margin-bottom: 10px;
       text-transform: lowercase;
       color: transparent;
       -webkit-text-stroke: 0.5px #808080;
       text-stroke: 0.5px #808080;
-      display: inline-block;
-      position: absolute;
-      left: 0;
-      padding-left: 20px;
-      -webkit-text-fill-color: transparent;
-      text-fill-color: transparent;
     }
 
-    .website-link {
+    .section a {
       text-decoration: none;
-    }
-
-    .website-link .website:hover {
-      animation: none;
-      -webkit-text-stroke: 0.5px #808080;
-    }
-
-    .links-container {
-      display: flex;
-      justify-content: flex-start;
-      margin-top: 10%;
-    }
-
-    .links-right {
-      font-size: 1.875em; /* Increased by 25% */
-      color: transparent;
-      -webkit-text-stroke: 0.5px #808080; /* Same color as "Chris Carroll" text */
-      text-stroke: 0.5px #808080;
-      width: 50%;
-      position: relative;
-      padding-left: 20px;
-    }
-
-    .writings-title {
-      font-size: 2.35em; /* Increased by 25% */
-      font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 5px; /* Closer to the links */
-      color: transparent;
-      -webkit-text-stroke: 0.5px #808080; /* Same color as "Chris Carroll" text */
-      text-stroke: 0.5px #808080;
-    }
-
-    .links-right a {
-      text-decoration: none;
-      color: transparent;
-      -webkit-text-stroke: 0.5px #808080; /* Same color as "Chris Carroll" text */
-      text-stroke: 0.5px #808080;
-      padding-right: 10px;
+      color: #666;
       display: block;
+      margin-bottom: 5px;
       transition: all 0.3s ease-in-out;
     }
 
-    /* Rainbow Animation */
+    .section.writing a {
+      color: #666;
+    }
+
     @keyframes rainbow {
       0% { color: red; }
       14% { color: orange; }
@@ -119,37 +83,39 @@
       100% { color: red; }
     }
 
-    .links-right a:hover {
-      animation: rainbow 1s infinite; /* Flashing rainbow colors */
-      -webkit-text-stroke: 0.5px transparent; /* Remove the stroke when flashing */
+    .section a:hover {
+      animation: rainbow 1s infinite;
     }
 
     nav {
-      position: absolute;
-      bottom: 10px;
-      right: 20px;
+      text-align: center;
       font-size: 14px;
+      margin-top: 50px;
+      width: 100%;
     }
 
     nav ul {
       list-style-type: none;
       padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: flex-start; /* align left */
+      gap: 20px;
     }
 
     nav ul li {
       display: inline;
-      margin-right: 20px;
     }
 
     nav ul li a {
       text-decoration: none;
-      color: #333;
+      color: #666;
       font-weight: bold;
     }
 
     .gif-container {
       text-align: center;
-      margin-top: 100px;
+      width: 100%;
     }
 
     .gif-container img {
@@ -160,37 +126,51 @@
 </head>
 <body>
 
-  <header>
-    <h1>CHRIS CARROLL</h1>
-  </header>
+  <div class="container">
 
-  <div class="content">
-    <a href="https://chriscarroll.uk/about" class="website-link">
-      <h2 class="website">about</h2>
-    </a>
-  </div>
+    <header>
+      <!-- Big Chris Carroll heading removed -->
+    </header>
 
-  <div class="links-container">
-    <div class="links-right">
-      <div class="writings-title">writing</div>
-      <a href="https://charm-school.net/chriscarroll-moles" target="_blank">Moles [Charm School]</a>
-      <a href="https://chris1.substack.com/p/i-am-a-straight-guy?utm_source=profile&utm_medium=reader2" target="_blank">I Am A Straight Guy [Substack]</a>
-      <a href="https://chris1.substack.com/p/screenshots-of-six-poems-i-wrote?utm_source=profile&utm_medium=reader2" target="_blank">Screenshots of six poems</a>
-      <a href="https://chriscarroll.uk/writing" target="_blank">poems on my website</a>
+    <div class="sections-row">
+
+      <!-- Writing Section -->
+      <div class="section writing">
+        <div class="section-title">writing</div>
+        <a href="https://charm-school.net/chriscarroll-moles" target="_blank">Moles</a>
+        <a href="https://chris1.substack.com/p/i-am-a-straight-guy?utm_source=profile&utm_medium=reader2" target="_blank">I Am A Straight Guy</a>
+        <a href="https://chriscarroll.uk/writing" target="_blank">writings i host on this website</a>
+      </div>
+
+      <!-- Sound Section -->
+      <div class="section">
+        <div class="section-title">sound</div>
+        <a href="https://heartsoft.bandcamp.com/" target="_blank">Heartsoft project</a>
+      </div>
+
+      <!-- Visual Art Section -->
+      <div class="section">
+        <div class="section-title">visual art</div>
+        <a href="#" target="_blank">photo</a>
+        <a href="#" target="_blank">graphic art</a>
+        <a href="#" target="_blank">drawing</a>
+      </div>
+
     </div>
-  </div>
 
-  <div class="gif-container">
-    <img src="https://www.zingerbug.com/Comments/glitter_graphics/framed_glitter_kitty_face_metallic.gif" alt="Glitter Kitty Face GIF">
-  </div>
+    <div class="gif-container">
+      <img src="https://www.zingerbug.com/Comments/glitter_graphics/framed_glitter_kitty_face_metallic.gif" alt="Glitter Kitty Face GIF">
+    </div>
 
-  <footer>
-    <nav>
-      <ul>
-        <li><a href="index.html">home</a></li>
-      </ul>
-    </nav>
-  </footer>
+    <footer>
+      <nav>
+        <ul>
+          <!-- Home link removed as requested -->
+        </ul>
+      </nav>
+    </footer>
+
+  </div>
 
 </body>
 </html>
