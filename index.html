@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <link rel="icon" href="https://i.ibb.co/XrD9y8Jq/e2072737-0213-4668-a900-77ac19758edb.jpg">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chris carroll's website</title>
   <style>
     body {
@@ -44,8 +44,7 @@
 
     .section {
       color: #666;
-      -webkit-text-stroke: 0.5px #808080;
-      text-stroke: 0.5px #808080;
+      /* Remove text stroke for normal text */
       padding-left: 10px;
       width: 100%;
     }
@@ -60,31 +59,21 @@
       text-stroke: 0.5px #808080;
     }
 
+    /* Links styled as regular thin underlined text */
     .section a {
-      text-decoration: none;
+      text-decoration: underline;
       color: #666;
+      font-weight: normal; /* normal weight */
+      -webkit-text-stroke: 0; /* remove stroke */
+      text-stroke: 0;
       display: block;
       margin-bottom: 5px;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .section.writing a {
-      color: #666;
-    }
-
-    @keyframes rainbow {
-      0% { color: red; }
-      14% { color: orange; }
-      28% { color: yellow; }
-      42% { color: green; }
-      57% { color: blue; }
-      71% { color: indigo; }
-      85% { color: violet; }
-      100% { color: red; }
+      transition: color 0.3s ease-in-out;
     }
 
     .section a:hover {
-      animation: rainbow 1s infinite;
+      color: #444;
+      text-decoration: underline; /* keep underline on hover */
     }
 
     nav {
@@ -108,9 +97,11 @@
     }
 
     nav ul li a {
-      text-decoration: none;
+      text-decoration: underline;
       color: #666;
-      font-weight: bold;
+      font-weight: normal; /* normal weight */
+      -webkit-text-stroke: 0;
+      text-stroke: 0;
     }
 
     .gif-container {
@@ -137,29 +128,29 @@
       <!-- Writing Section -->
       <div class="section writing">
         <div class="section-title">writing</div>
-        <a href="https://charm-school.net/chriscarroll-moles" target="_blank">Moles</a>
-        <a href="https://chris1.substack.com/p/i-am-a-straight-guy?utm_source=profile&utm_medium=reader2" target="_blank">I Am A Straight Guy</a>
-        <a href="https://chriscarroll.uk/writing" target="_blank">writings i host on this website</a>
+        <a href="https://charm-school.net/chriscarroll-moles" target="_blank" rel="noopener noreferrer">Moles</a>
+        <a href="https://chris1.substack.com/p/i-am-a-straight-guy?utm_source=profile&utm_medium=reader2" target="_blank" rel="noopener noreferrer">I Am A Straight Guy</a>
+        <a href="https://chriscarroll.uk/writing" target="_blank" rel="noopener noreferrer">writings i host on this website</a>
       </div>
 
       <!-- Sound Section -->
       <div class="section">
         <div class="section-title">sound</div>
-        <a href="https://heartsoft.bandcamp.com/" target="_blank">Heartsoft project</a>
+        <a href="https://heartsoft.bandcamp.com/" target="_blank" rel="noopener noreferrer">Heartsoft project</a>
       </div>
 
       <!-- Visual Art Section -->
       <div class="section">
         <div class="section-title">visual art</div>
-        <a href="#" target="_blank">photo</a>
-        <a href="#" target="_blank">graphic art</a>
-        <a href="#" target="_blank">drawing</a>
+        <a href="#" target="_blank" rel="noopener noreferrer">photo</a>
+        <a href="#" target="_blank" rel="noopener noreferrer">graphic art</a>
+        <a href="#" target="_blank" rel="noopener noreferrer">drawing</a>
       </div>
 
     </div>
 
     <div class="gif-container">
-      <img src="https://www.zingerbug.com/Comments/glitter_graphics/framed_glitter_kitty_face_metallic.gif" alt="Glitter Kitty Face GIF">
+      <img src="https://www.zingerbug.com/Comments/glitter_graphics/framed_glitter_kitty_face_metallic.gif" alt="Glitter Kitty Face GIF" />
     </div>
 
     <footer>
