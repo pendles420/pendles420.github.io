@@ -58,7 +58,7 @@
     }
 
     .section a {
-      text-decoration: underline;
+      text-decoration: none;
       color: #666;
       font-weight: normal;
       -webkit-text-stroke: 0;
@@ -69,8 +69,7 @@
     }
 
     .section a:hover {
-      color: #444;
-      text-decoration: underline;
+      color: #0000FF; /* error 404 blue */
     }
 
     nav {
@@ -94,11 +93,15 @@
     }
 
     nav ul li a {
-      text-decoration: underline;
+      text-decoration: none;
       color: #666;
       font-weight: normal;
       -webkit-text-stroke: 0;
       text-stroke: 0;
+    }
+
+    nav ul li a:hover {
+      color: #0000FF; /* error 404 blue */
     }
 
     .gif-container {
@@ -120,11 +123,12 @@
 
     .about-link a {
       color: #666;
-      text-decoration: underline;
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
     }
 
     .about-link a:hover {
-      color: #444;
+      color: #0000FF; /* error 404 blue */
     }
   </style>
 </head>
