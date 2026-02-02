@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>photos</title>
+  <style>
+    body {
+      font-family: 'Helvetica', sans-serif;
+      background-color: #FFFFFF;
+      color: #666;
+      margin: 0;
+      padding: 40px 20px 80px;
+      line-height: 1.6;
+      font-size: 16.1px;
+      position: relative;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    h1 {
+      font-size: 2em;
+      text-transform: lowercase;
+      margin-bottom: 10px;
+    }
+
+    .photo {
+      width: 80%;
+      height: auto;
+      border-radius: 0;
+    }
+
+    .home-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 0.9em;
+      color: #666;
+      text-decoration: none;
+    }
+
+    .home-button:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>drawings</h1>
+
+    <img src="https://i.ibb.co/CpFVP4Y5/image.png" alt="Photo 1" class="photo">
+    <img src="https://i.ibb.co/p6q82bL9/image.png" alt="Photo 2" class="photo">
+    <img src="https://i.ibb.co/z38gKY7/image.png" alt="Photo 3" class="photo">
+    <img src="https://i.ibb.co/npDXxtc/image.png" alt="Photo 4" class="photo">
+    <img src="https://i.ibb.co/1fhmkQQT/image.png" alt="Photo 5" class="photo">
+    <img src="https://i.ibb.co/rK8C7tY6/image.png" alt="Photo 6" class="photo">
+    
+  </div>
+
+  <a href="https://chriscarroll.uk/" class="home-button">home</a>
+</body>
+</html>
 
