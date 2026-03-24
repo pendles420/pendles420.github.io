@@ -10,7 +10,7 @@
 
   body {
     background: #ffffff;
-    color: #111;
+    color: #000;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.6;
@@ -42,7 +42,7 @@
   .hour-label {
     font-size: 11px;
     font-family: Helvetica, Arial, sans-serif;
-    color: #aaa;
+    color: #000;
     margin-bottom: 10px;
     padding-bottom: 4px;
     border-bottom: 1px solid #eee;
@@ -60,7 +60,7 @@
   .entry-time {
     font-size: 10px;
     font-family: Helvetica, Arial, sans-serif;
-    color: #bbb;
+    color: #000;
     min-width: 44px;
     flex-shrink: 0;
     text-align: right;
@@ -80,7 +80,7 @@
   .domain {
     font-size: 10px;
     font-family: Helvetica, Arial, sans-serif;
-    color: #ccc;
+    color: #000;
     margin-left: 4px;
     text-decoration: none;
   }
@@ -90,7 +90,7 @@
     border: none;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 10px;
-    color: #bbb;
+    color: #000;
     cursor: pointer;
     padding: 0;
     margin-left: 6px;
@@ -111,7 +111,7 @@
   .instagram-block {
     font-size: 10px;
     font-family: Helvetica, Arial, sans-serif;
-    color: #ccc;
+    color: #000;
     margin: 4px 0 4px 58px;
   }
 
@@ -119,18 +119,12 @@
     margin-top: 64px;
     font-size: 11px;
     font-family: Helvetica, Arial, sans-serif;
-    color: #aaa;
-    border-top: 1px solid #eee;
+    color: #000;
+    border-top: 1px solid #000;
     padding-top: 20px;
   }
 
-  #clock {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 10px;
-    font-family: Helvetica, Arial, sans-serif;
-    color: #ccc;
+ 
   }
 </style>
 </head>
@@ -766,20 +760,7 @@ function toggleCollapse(id, btn) {
   btn.textContent = el.classList.contains('collapsed') ? '[+]' : '[−]';
 }
 
-// clock
-const times = [
-  '5:22 pm','5:47 pm','6:15 pm','6:44 pm','7:19 pm',
-  '9:04 pm','9:31 pm','10:22 pm','12:51 am','1:22 am',
-  '1:36 am','2:52 am','3:10 am','4:40 am','4:54 am',
-  '5:02 am','5:22 am','5:41 am'
-];
-let ti = 0;
-const clockEl = document.getElementById('clock');
-clockEl.textContent = times[ti];
-setInterval(() => {
-  ti = (ti + 1) % times.length;
-  clockEl.textContent = times[ti];
-}, 18000);
+
 </script>
 
 </body>
