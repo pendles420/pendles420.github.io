@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I was on my computer from 5:22 pm to 5:41 am</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f5f2ec;
+    color: #2a2a2a;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 40px 20px 120px 20px;
+  }
+
+  a {
+    color: #2a2a2a;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  a:hover {
+    color: #888;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .timestamp {
+    font-size: 11px;
+    color: #aaa;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 28px;
+    letter-spacing: 0.03em;
+  }
+
+  .title {
+    font-size: 13px;
+    color: #aaa;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 48px;
+    letter-spacing: 0.01em;
+  }
+
+  p {
+    margin-bottom: 18px;
+  }
+
+  .links {
+    margin-top: 36px;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+  }
+
+  .links a {
+    display: block;
+    margin-bottom: 6px;
+    color: #888;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  .links a:hover {
+    color: #2a2a2a;
+  }
+
+  .links a::before {
+    content: '→ ';
+    color: #ccc;
+  }
+
+  .npc {
+    font-style: italic;
+    color: #777;
+    font-size: 14px;
+    border-left: 2px solid #ddd;
+    padding-left: 14px;
+    margin: 24px 0;
+  }
+
+  .broken {
+    color: #bbb;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e0dcd4;
+    margin: 32px 0;
+  }
+
+  .small {
+    font-size: 12px;
+    color: #aaa;
+    font-family: 'Courier New', monospace;
+  }
+
+  #clock {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    color: #ccc;
+  }
+</style>
+</head>
+<body>
+
+<div id="clock"></div>
+
+<!-- PAGE: TITLE / ENTRY -->
+<div class="page active" id="p-start">
+  <div class="title">chriscarroll.uk / night</div>
+  <p>I was on my computer from 5:22 pm to 5:41 am.</p>
+  <p class="small">monday march 23 – tuesday march 24, 2026</p>
+  <div class="links">
+    <a href="#" onclick="go('p-apartment')">apartment</a>
+    <a href="#" onclick="go('p-substack')">open tab</a>
+    <a href="#" onclick="go('p-outside')">outside</a>
+  </div>
+</div>
+
+<!-- PAGE: APARTMENT -->
+<div class="page" id="p-apartment">
+  <div class="timestamp">5:22 pm</div>
+  <p>The apartment. The screen is on. It has been on for a while.</p>
+  <p>I am editing a piece called "I ate sushi." I have been editing it for several days. I think it is almost done. I am not sure what done means for this.</p>
+  <p>I search "nicky nicky nine doors." I am not sure why. I do not click anything.</p>
+  <div class="npc">someone liked your post. someone liked your post. someone liked your post.</div>
+  <p>I check the email. There is a message about a transcript request. I filed this two weeks ago. They have not responded. I file it again.</p>
+  <div class="links">
+    <a href="#" onclick="go('p-substack')">open tab</a>
+    <a href="#" onclick="go('p-street')">go outside</a>
+    <a href="#" onclick="go('p-apartment2')">stay</a>
+  </div>
+</div>
+
+<!-- PAGE: SUBSTACK -->
+<div class="page" id="p-substack">
+  <div class="timestamp">6:16 pm</div>
+  <p>There is a Substack called "I Predict Trends." The most recent post is called "Marriage as a revenge fantasy." I read it. It is good. I think about sending it to someone. I do not.</p>
+  <p>I open a tab for a literary magazine called BRUISER. I open a tab for a magazine called HAD. I open a tab for Hobart. I open a tab called Public Parking which is in Manitoba. I do not submit to any of them. I look at all of their submission pages.</p>
+  <p>I am also working on a poem. ChatGPT says the poem is good. ChatGPT says the poem has "earned its abstraction." I stare at that phrase for a while.</p>
+  <div class="npc">the word "effusive" means expressing feelings of gratitude, pleasure, or approval in an unrestrained or heartfelt manner.</div>
+  <div class="links">
+    <a href="#" onclick="go('p-apartment')">back to the apartment</a>
+    <a href="#" onclick="go('p-outside')">go outside</a>
+    <a href="#" onclick="go('p-magazine')">hobart</a>
+  </div>
+</div>
+
+<!-- PAGE: MAGAZINE -->
+<div class="page" id="p-magazine">
+  <div class="timestamp">6:37 pm</div>
+  <p>Most of Hobart's editors have resigned. I read the Reddit thread about it. Someone says the interview was "tedious and anti-woke." Someone else says this is good actually. Someone else says this is bad actually.</p>
+  <p>I look at the submission page anyway.</p>
+  <p>I think about the piece I am working on. I think about whether it is a story or an essay. I decide this question is not interesting.</p>
+  <div class="links">
+    <a href="#" onclick="go('p-apartment2')">apartment, later</a>
+    <a href="#" onclick="go('p-substack')">back</a>
+  </div>
+</div>
+
+<!-- PAGE: OUTSIDE -->
+<div class="page" id="p-outside">
+  <div class="timestamp">7:19 pm</div>
+  <p>I look up David Wojnarowicz. The buffalo photograph. I have seen it before. I look at it again.</p>
+  <p>I look up the Eddington poster. I am thinking about a film I haven't seen.</p>
+  <p>I look up a website called creepywinkyhouse.com. It is a real website. It has pages called "the miracle of psycho command power" and "a little bit about my powers" and "each morning is all mornings." I read all of them.</p>
+  <div class="npc">each morning is all mornings<br>each morning is all mornings<br>each morning is all mornings</div>
+  <p>I think this is good.</p>
+  <div class="links">
+    <a href="#" onclick="go('p-street')">the street</a>
+    <a href="#" onclick="go('p-apartment2')">go home</a>
+  </div>
+</div>
+
+<!-- PAGE: STREET -->
+<div class="page" id="p-street">
+  <div class="timestamp">9:26 pm</div>
+  <p>I look at Ann Arbor on Google Maps for a while. There is a writer who lives there. I look at apartments on Craigslist in Ann Arbor. They are cheaper than Brooklyn. I look at apartments on Craigslist in Brooklyn. I do not want to move to Ann Arbor.</p>
+  <p>I search "Elizabeth Ellen." I look at the Hobart website. I think about the relationship between those two facts. I do not write it down.</p>
+  <p>I look up "Mujeres al borde de un ataque de nervios." I do not watch it. I add it to a list. I already have it on a list.</p>
+  <div class="links">
+    <a href="#" onclick="go('p-apartment2')">apartment</a>
+    <a href="#" onclick="go('p-bar')">later</a>
+  </div>
+</div>
+
+<!-- PAGE: APARTMENT 2 -->
+<div class="page" id="p-apartment2">
+  <div class="timestamp">9:31 pm</div>
+  <p>I listen to a song called "Over The Water To Charlie" by the Albion Morris Men. I find this on Spotify. I am not sure how.</p>
+  <p>I look at DistroKid. I have music I could put on DistroKid. I do not do this.</p>
+  <p>I watch some of Utopia Season 2 on Prime Video. Then 30 Rock. Then I close the laptop and open it again.</p>
+  <div class="npc">a new subscriber to chris carroll's blogs and stories. a new subscriber to chris carroll's blogs and stories.</div>
+  <div class="links">
+    <a href="#" onclick="go('p-late')">it gets late</a>
+    <a href="#" onclick="go('p-street')">go back outside</a>
+  </div>
+</div>
+
+<!-- PAGE: BAR / LATE NIGHT INTERNET -->
+<div class="page" id="p-bar">
+  <div class="timestamp">12:51 am</div>
+  <p>I am on Letterboxd. I search for films directed by Tao Lin. There are two. One is called MDMA. One is called Mumblecore. They were made in 2011. I look for them online. I find a Vimeo page. I make an account. I cannot find the film. I close the tab.</p>
+  <p>I look at my own Letterboxd lists. "messed up." "bad but good and sometimes just pretty good." "movies i will probably never intentionally watch." I edit all of them. I do not add anything.</p>
+  <p>I search for films starring Matthew Goldin on Letterboxd. There are none.</p>
+  <div class="links">
+    <a href="#" onclick="go('p-late')">later</a>
+    <a href="#" onclick="go('p-apartment2')">back</a>
+  </div>
+</div>
+
+<!-- PAGE: LATE -->
+<div class="page" id="p-late">
+  <div class="timestamp">1:22 am</div>
+  <p>I use Grok to generate an image of "MS Paint cute character doodles." The image is not good. I ask it to make it better. It is the same.</p>
+  <p>I look at a Facebook group called Mathematical Tiling and Tessellation. I search "green grid complex" many times. I am not sure what I am looking for. I think I will know it when I find it. I do not find it.</p>
+  <p>I open Google Docs. I write a sentence. I delete it. I write the same sentence again slightly differently.</p>
+  <div class="npc">the word "nascent" means just coming into existence and beginning to display signs of future potential.</div>
+  <div class="links">
+    <a href="#" onclick="go('p-history')">a different kind of research</a>
+    <a href="#" onclick="go('p-apartment')">the apartment</a>
+  </div>
+</div>
+
+<!-- PAGE: HISTORY -->
+<div class="page" id="p-history">
+  <div class="timestamp">1:32 am</div>
+  <p>I read about the Stuart Restoration. I read about the English Interregnum. I read about Oliver Cromwell. I read about the word "droll" which in the 17th century meant a short comic theatrical piece performed during the Interregnum when theaters were officially banned.</p>
+  <p>I think about that. A droll. Performed in secret. During a period when the serious form was prohibited.</p>
+  <p>I read about the Crusades. I look at 13th century miniatures. I look at Giotto's Lamentation (c. 1305). I look at Gustave Courbet's The Stone Breakers. ChatGPT tells me something about early realism in painting. I forget what it says almost immediately.</p>
+  <div class="links">
+    <a href="#" onclick="go('p-music')">music</a>
+    <a href="#" onclick="go('p-late')">back</a>
+  </div>
+</div>
+
+<!-- PAGE: MUSIC -->
+<div class="page" id="p-music">
+  <div class="timestamp">2:52 am</div>
+  <p>I listen to Boards of Canada. I listen to Dntel. I listen to The Peoples Republic of Europe. I listen to Oneohtrix Point Never. I watch the R Plus Seven loops on YouTube. They are each about a minute long. I watch them several times.</p>
+  <p>I look up where Daniel Lopatin lives. He lives in Brooklyn. I look up the FADER article about him. He says something about his apartment. I look at a photo of his apartment on the FADER website.</p>
+  <p>I think about the song "Move For Me" by Kaskade. I look it up. I listen to it. I think about how old it is. I look up how old Kaskade is.</p>
+  <div class="npc">ryan gary raddon. born 1971. raised in chicago. member of the church of jesus christ of latter-day saints. does not drink or use drugs.</div>
+  <div class="links">
+    <a href="#" onclick="go('p-drugs')">drugs</a>
+    <a href="#" onclick="go('p-city')">the city</a>
+  </div>
+</div>
+
+<!-- PAGE: DRUGS -->
+<div class="page" id="p-drugs">
+  <div class="timestamp">3:10 am</div>
+  <p>I watch a YouTube video called "Two years in an underground MDMA lab." I watch an Anthony Bourdain interview about taking LSD. He describes colors becoming more vivid. He says something about the food he was eating. I watch it twice.</p>
+  <p>I read about Erick Morillo. I look up whether Aphex Twin has done drugs. The Reddit thread is inconclusive. Someone says he said something about it in an interview. Someone else says that interview was a joke. Someone else says it doesn't matter.</p>
+  <p>I read about a Vice article about a new form of MDMA. The article is from several years ago. I read it anyway.</p>
+  <div class="links">
+    <a href="#" onclick="go('p-city')">the city</a>
+    <a href="#" onclick="go('p-music')">back</a>
+  </div>
+</div>
+
+<!-- PAGE: THE CITY -->
+<div class="page" id="p-city">
+  <div class="timestamp">4:40 am</div>
+  <p>I watch a video of The Crew 2's San Francisco. The buildings are slightly wrong. The hills are the right shape. I watch a comparison video: The Crew 1 map vs The Crew 2 map. Several locations were removed. Several were downgraded. Someone in the comments is very upset about this.</p>
+  <p>I watch Horizon Forbidden West's ruined San Francisco. The game is set in 2126. The buildings are overgrown. The scale feels almost right.</p>
+  <p>I watch GTA IV's version of Brooklyn. I look up which district corresponds to which real neighborhood. Broker is Brooklyn. Hove Beach is Brighton Beach. I look at a map. I compare it to Google Maps. The shapes are similar but the proportions are off.</p>
+  <div class="npc">this area is based on a real place. this area is based on a real place. this area is based on a real place.</div>
+  <div class="links">
+    <a href="#" onclick="go('p-london')">london</a>
+    <a href="#" onclick="go('p-politics')">something else</a>
+    <a href="#" onclick="go('p-city2')">more of this</a>
+  </div>
+</div>
+
+<!-- PAGE: CITY 2 -->
+<div class="page" id="p-city2">
+  <div class="timestamp">4:45 am</div>
+  <p>I watch Tony Hawk's Proving Ground. The Baltimore level. I watch someone play it on YouTube. The Inner Harbor looks almost right. Someone has made an "Enhanced Baltimore" mod for THPS. I look at screenshots of it on Reddit.</p>
+  <p>I look up the Wikipedia page for Blur. The racing game, not the band. I had forgotten it existed. I watch gameplay footage. It looks like it should have been more successful than it was.</p>
+  <p>I look up Skate It. The Wii version. There is a YouTube video called "SKATE IT: The Forgotten Wii and DS Exclusive Skate Game." I watch most of it.</p>
+  <p>I look up "any games set in barcelona." The Wikipedia category page loads. There are not many.</p>
+  <div class="links">
+    <a href="#" onclick="go('p-city')">back</a>
+    <a href="#" onclick="go('p-london')">london</a>
+  </div>
+</div>
+
+<!-- PAGE: LONDON -->
+<div class="page" id="p-london">
+  <div class="timestamp">5:02 am</div>
+  <p>I search "does it snow in london." It does, occasionally. The average temperature in winter is around 5°C. I watch a 4K walk through Dalston, Hackney. Then a video called "Cultural And Trendy Walking Tour From Hackney Central To London Fields."</p>
+  <p>I look at Essex on Google Maps for a long time. I scroll around. I look at town names. I look at the coastline. I look at a place called Southwark. I look at The Shard.</p>
+  <p>ChatGPT tells me the Hackney is larger than Bushwick by area. I ask it how long it takes to get from London to Paris on the Eurostar. It takes about two and a half hours. Part of it is underwater.</p>
+  <div class="npc">you are looking at a map of a place you have never been. you are looking at a map of a place you have never been.</div>
+  <div class="links">
+    <a href="#" onclick="go('p-end')">5:22 am</a>
+    <a href="#" onclick="go('p-city')">back to the city</a>
+    <a href="#" onclick="go('p-apartment')">the apartment</a>
+  </div>
+</div>
+
+<!-- PAGE: POLITICS -->
+<div class="page" id="p-politics">
+  <div class="timestamp">4:54 am</div>
+  <p>I look up Russell Vought. I look up Paul Winfree. I look up Daren Bakst. I read the Wikipedia page for Project 2025 contributors. I look at the address of the Heritage Foundation on Google Maps. It is on Massachusetts Avenue NE in Washington D.C. I zoom in. I zoom out.</p>
+  <p>I watch a YouTube video: "Project 2025 Co-Author Caught On Secret Camera Talking About a National Porn Ban." It is from The Intercept. I watch it. I think about it for a moment. I open a new tab.</p>
+  <div class="links">
+    <a href="#" onclick="go('p-city')">the city</a>
+    <a href="#" onclick="go('p-london')">london</a>
+  </div>
+</div>
+
+<!-- PAGE: END -->
+<div class="page" id="p-end">
+  <div class="timestamp">5:41 am</div>
+  <p>I am writing in a Google Doc. I take a screenshot of it with Gyazo. I open the screenshot in Paint.net. I am not sure what I am going to do with it.</p>
+  <p>Outside it is still dark, or it is just becoming light. I have not looked.</p>
+  <p>I think about a sentence I wrote earlier. I cannot remember if I kept it or deleted it. I open the document. It is not there. I am not sure if I deleted it or if I am thinking of a different sentence.</p>
+  <p>I close some tabs. There are still many tabs.</p>
+  <hr>
+  <p class="small">I was on my computer from 5:22 pm to 5:41 am.</p>
+  <p class="small">total: 12 hours 19 minutes</p>
+  <div class="links">
+    <a href="#" onclick="go('p-start')">start again</a>
+    <a href="#" onclick="go('p-apartment')">the apartment</a>
+  </div>
+</div>
+
+<script>
+  function go(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById(id);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+    return false;
+  }
+
+  // clock that slowly drifts
+  const times = [
+    '5:22 pm', '5:47 pm', '6:15 pm', '6:44 pm', '7:19 pm',
+    '9:04 pm', '9:31 pm', '10:22 pm', '12:51 am', '1:22 am',
+    '1:36 am', '2:52 am', '3:10 am', '4:40 am', '4:54 am',
+    '5:02 am', '5:22 am', '5:41 am'
+  ];
+  let ti = 0;
+  const clockEl = document.getElementById('clock');
+  clockEl.textContent = times[ti];
+  setInterval(() => {
+    ti = (ti + 1) % times.length;
+    clockEl.textContent = times[ti];
+  }, 18000);
+</script>
+
+</body>
+</html>
