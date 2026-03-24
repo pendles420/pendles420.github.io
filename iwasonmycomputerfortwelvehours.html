@@ -7,642 +7,327 @@
 <title>i was on my computer for twelve hours</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: #ffffff;
     color: #000;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.65;
     max-width: 620px;
     margin: 0 auto;
     padding: 48px 24px 120px 24px;
   }
-
+  #clock {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
   h1 {
     font-size: 19px;
-    font-family: Helvetica, Arial, sans-serif;
     font-weight: 300;
     color: #0000FF;
     margin-bottom: 6px;
     letter-spacing: 0.01em;
   }
-
   .subtitle {
     font-size: 11px;
-    font-family: Helvetica, Arial, sans-serif;
     color: #000;
-    margin-bottom: 48px;
+    margin-bottom: 56px;
+    line-height: 1.5;
   }
-
   .section {
-    margin-bottom: 48px;
+    margin-bottom: 52px;
   }
-
   .hour-label {
     font-size: 11px;
-    font-family: Helvetica, Arial, sans-serif;
     color: #000;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     padding-bottom: 4px;
     border-bottom: 1px solid #eee;
     letter-spacing: 0.05em;
   }
-
   .entry {
     display: flex;
     align-items: baseline;
-    gap: 14px;
-    margin-bottom: 3px;
-    font-size: 14px;
+    gap: 16px;
+    margin-bottom: 4px;
+    font-size: 14.5px;
   }
-
   .entry-time {
     font-size: 10px;
-    font-family: Helvetica, Arial, sans-serif;
-    color: #000;
-    min-width: 44px;
+    color: #666;
+    min-width: 52px;
     flex-shrink: 0;
     text-align: right;
+    font-variant-numeric: tabular-nums;
   }
-
   .entry-text {
-    color: #0000FF;
-    text-decoration: underline;
-    cursor: default;
+    color: #000;
     word-break: break-word;
   }
-
-  .entry-text:hover {
-    color: #551A8B;
-  }
-
-  .domain {
-    font-size: 10px;
-    font-family: Helvetica, Arial, sans-serif;
-    color: #000;
-    margin-left: 4px;
-    text-decoration: none;
-  }
-
-  .collapse-btn {
-    background: none;
-    border: none;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 10px;
-    color: #000;
-    cursor: pointer;
-    padding: 0;
-    margin-left: 6px;
-  }
-
-  .collapse-btn:hover {
-    color: #0000FF;
-  }
-
-  .entries-container.collapsed .entry {
-    display: none;
-  }
-
-  .entries-container.collapsed .entry:nth-child(-n+3) {
-    display: flex;
-  }
-
-  .instagram-block {
-    font-size: 10px;
-    font-family: Helvetica, Arial, sans-serif;
-    color: #000;
-    margin: 4px 0 4px 58px;
-  }
-
   .footer {
-    margin-top: 64px;
+    margin-top: 80px;
     font-size: 11px;
-    font-family: Helvetica, Arial, sans-serif;
-    color: #000;
+    color: #666;
     border-top: 1px solid #000;
     padding-top: 20px;
-  }
-
- 
   }
 </style>
 </head>
 <body>
-
 <div id="clock"></div>
-
 <h1>i was on my computer for twelve hours</h1>
-<div class="subtitle">monday march, 23 – tuesday march 24, 2026 &nbsp;·&nbsp; 5:22 pm – 5:41 am. <p>i stayed up all night and went on my computer for twelve hours. this is everything i searched. i censored certain searches that contained names of people i don’t want to know i searched, pornographic content, and a few other embarrassing things. otherwise, it's completely "me".</p></div>
+<div class="subtitle">
+  monday march 23 – tuesday march 24, 2026 &nbsp;·&nbsp; 5:22 pm – 5:41 am<br>
+  i stayed up all night. this is everything i searched and visited. 
+  certain things are censored. otherwise it’s completely me.
+</div>
 
 <div id="timeline"></div>
 
 <script>
-// All entries from search history, filtered per instructions
-// Excluded: 
+// Updated, cleaner data based on your detailed summary
 const raw = [
-  // 5:22 PM
-  ["5:22 PM","nicky nicky nine doors","google.com"],
-  ["5:22 PM","Editing newsletter - Substack","chris1.substack.com"],
-  ["5:22 PM","Instagram","instagram.com"],
-  // 5:29–5:32 PM
-  ["5:29 PM","cats having sex","youtube.com"],
-  ["5:29 PM","Male and Female cats meeting for the first time.","youtube.com"],
-  ["5:29 PM","Melissa Edwards","google.com"],
-  ["5:31 PM","Worm-Away","google.com"],
-  ["5:32 PM","Brooklyn College","wikipedia.org"],
-  ["5:32 PM","qcc","google.com"],
-  // 5:34–5:42 PM
-  ["5:34 PM","creepy winky house","creepywinkyhouse.com"],
-  ["5:35 PM","Manic Monologue Analysis","chatgpt.com"],
-  ["5:37 PM","CENSORED"],
-  ["5:39 PM","groundsandwich","google.com"],
-  ["5:40 PM","CENSORED"],
-  ["5:41 PM","Character Redesign Request","chatgpt.com"],
-  ["5:42 PM","flickr","google.com"],
-  // 5:47–5:50 PM
-  ["5:47 PM","Search: psycho","flickr.com"],
-  ["5:47 PM","Search: cho","flickr.com"],
-  ["5:48 PM","psycho | vintage_queen","flickr.com"],
-  ["5:50 PM","Little Stuffy Goes Beserk","flickr.com"],
-  // 6:15–6:48 PM
-  ["6:15 PM","Observations in Bushwick","chatgpt.com"],
-  ["6:16 PM","Marriage as a revenge fantasy - by Mr.Mittens","substack.com"],
-  ["6:16 PM","I Predict Trends | Substack","substack.com"],
-  ["6:17 PM","I Want My Virginity Back - Eleanor","substack.com"],
-  ["6:21 PM","Your Horoscope for the Week of October 6, 2024","substack.com"],
-  ["6:27 PM","creepy winky house — submit","creepywinkyhouse.com"],
-  ["6:33 PM","I ate sushi - chris carroll's blogs and stories","substack.com"],
-  ["6:34 PM","Poem Review and Feedback","chatgpt.com"],
-  ["6:34 PM","Public Parking Publication | Manitoba","thisispublicparking.com"],
-  ["6:35 PM","Submit - BRUISER","bruisermag.com"],
-  ["6:35 PM","google docs","google.com"],
-  ["6:37 PM","hobart pulp","google.com"],
-  ["6:37 PM","Most of lit journal Hobart's editors resign over tedious, \"anti-woke\" interview","reddit.com"],
-  ["6:37 PM","Hobart :: Submit","hobartpulp.com"],
-  ["6:39 PM","Aaron Burch","google.com"],
-  ["6:39 PM","HAD :: HAD","havehashad.com"],
-  ["6:42 PM","Stephen King's The Body; aaron burch","google.com"],
-  ["6:44 PM","Editing \"I ate sushi\" - Substack","chris1.substack.com"],
-  ["6:46 PM","peel lit","peellit.com"],
-  ["6:48 PM","effusive","google.com"],
-  // 7:00–7:22 PM
-  ["7:00 PM","Untitled document - Google Docs","docs.google.com"],
-  ["7:17 PM","hubbyquaters","google.com"],
-  ["7:18 PM","creepy winky house","creepywinkyhouse.com"],
-  ["7:18 PM","Charlie Romano","charlieromano.com"],
-  ["7:19 PM","David Wojnarowicz","google.com"],
-  ["7:19 PM","David Wojnarowicz buffalos","google.com"],
-  ["7:19 PM","eddington poster","google.com"],
-  ["7:20 PM","Instagram","instagram.com"],
-  // 9:04–9:36 PM
-  ["9:04 PM","Marriage as a revenge fantasy - by Mr.Mittens","substack.com"],
-  ["9:05 PM","I ate sushi - chris carroll's blogs and stories","substack.com"],
-  ["9:09 PM","Stream heartsoft music","soundcloud.com"],
-  ["9:09 PM","If We Have Sex Again I Think We Will Like It by Sacred holes","soundcloud.com"],
-  ["9:09 PM","ear band","google.com"],
-  ["9:10 PM","cuny submit transcripts","google.com"],
-  ["9:10 PM","Transcripts | Brooklyn College","brooklyn.edu"],
-  ["9:12 PM","Re: Hardship Fee Waiver Request","mail.google.com"],
-  ["9:13 PM","The Experiencer – Chris Carroll - ExPat Press","expatpress.com"],
-  ["9:13 PM","I Am A Straight Guy - chris carroll's blogs and stories","substack.com"],
-  ["9:15 PM","alive internet theory","alivetheory.net"],
-  ["9:15 PM","Real Life - ear","youtube.com"],
-  ["9:16 PM","spencer chang","google.com"],
-  ["9:16 PM","ᴘᴇɴᴄᴇʀ ᴄʜᴀɴɢ ༶ Walking on the Internet Together","spencer.place"],
-  ["9:19 PM","pedro almodovar","google.com"],
-  ["9:19 PM","Mujeres al borde de un ataque de nervios","google.com"],
-  ["9:25 PM","hobartpulp","google.com"],
-  ["9:25 PM","creepy winky house","creepywinkyhouse.com"],
-  ["9:25 PM","Elizabeth Ellen","google.com"],
-  ["9:26 PM","ann arbor michigan","google.com"],
-  ["9:27 PM","Ann Arbor - Google Maps","google.com"],
-  ["9:27 PM","craigslist ann arbor","google.com"],
-  ["9:28 PM","craigslist brooklyn","google.com"],
-  ["9:28 PM","ann arbor apartments / housing for rent - craigslist","annarbor.craigslist.org"],
-  ["9:28 PM","brooklyn apartments / housing for rent - craigslist","newyork.craigslist.org"],
-  ["9:31 PM","creepy winky house","creepywinkyhouse.com"],
-  ["9:31 PM","Viral post praises Burger King in East Providence, Rhode Island, staffed by alt-goth twinks","x.com"],
-  ["9:32 PM","DistroKid","distrokid.com"],
-  ["9:35 PM","Over The Water To Charlie • The Albion Morris Men","open.spotify.com"],
-  ["9:36 PM","the albion morris men","google.com"],
+  // 5:22 PM block
+  ["5:22 PM", "nicky nicky nine doors"],
+  ["5:22 PM", "Editing newsletter - Substack"],
+  ["5:22 PM", "Instagram"],
+  ["5:29 PM", "cats having sex on youtube"],
+  ["5:29 PM", "Male and Female cats meeting for the first time"],
+  ["5:29 PM", "Melissa Edwards"],
+  ["5:31 PM", "Worm-Away"],
+  ["5:32 PM", "Brooklyn College"],
+  ["5:32 PM", "qcc"],
+
+  // creepywinkyhouse & chatgpt
+  ["5:34 PM", "creepy winky house"],
+  ["5:35 PM", "Manic Monologue Analysis"],
+  ["5:39 PM", "groundsandwich"],
+  ["5:41 PM", "Character Redesign Request"],
+  ["5:42 PM", "flickr"],
+
+  // flickr browsing
+  ["5:47 PM", "Search: psycho on flickr"],
+  ["5:47 PM", "Search: cho on flickr"],
+  ["5:48 PM", "psycho | vintage_queen"],
+  ["5:50 PM", "Little Stuffy Goes Beserk"],
+
+  // 6:15–6:48 PM writing & lit mags
+  ["6:15 PM", "Observations in Bushwick"],
+  ["6:16 PM", "Marriage as a revenge fantasy - Mr.Mittens"],
+  ["6:17 PM", "I Want My Virginity Back - Eleanor"],
+  ["6:21 PM", "Your Horoscope for the Week of October 6, 2024"],
+  ["6:27 PM", "creepy winky house — submit"],
+  ["6:33 PM", "I ate sushi - chris carroll"],
+  ["6:34 PM", "Poem Review and Feedback"],
+  ["6:34 PM", "Public Parking Publication | Manitoba"],
+  ["6:35 PM", "Submit - BRUISER"],
+  ["6:37 PM", "Hobart Pulp"],
+  ["6:37 PM", "Most of lit journal Hobart's editors resign over tedious, \"anti-woke\" interview"],
+  ["6:39 PM", "Aaron Burch"],
+  ["6:39 PM", "HAD magazine"],
+  ["6:42 PM", "Stephen King's The Body; aaron burch"],
+  ["6:44 PM", "Editing \"I ate sushi\""],
+  ["6:46 PM", "peel lit"],
+  ["6:48 PM", "effusive"],
+
+  // late evening writing & browsing
+  ["7:00 PM", "Untitled document - Google Docs"],
+  ["7:17 PM", "hubbyquaters"],
+  ["7:18 PM", "creepy winky house"],
+  ["7:18 PM", "Charlie Romano"],
+  ["7:19 PM", "David Wojnarowicz"],
+  ["7:19 PM", "David Wojnarowicz buffalos"],
+  ["7:19 PM", "eddington poster"],
+  ["7:20 PM", "Instagram"],
+
+  // 9 PM deep dive
+  ["9:04 PM", "Marriage as a revenge fantasy - Mr.Mittens"],
+  ["9:05 PM", "I ate sushi - chris carroll"],
+  ["9:09 PM", "Stream heartsoft music"],
+  ["9:09 PM", "If We Have Sex Again I Think We Will Like It by Sacred holes"],
+  ["9:09 PM", "ear band"],
+  ["9:10 PM", "cuny submit transcripts"],
+  ["9:12 PM", "Re: Hardship Fee Waiver Request"],
+  ["9:13 PM", "The Experiencer – Chris Carroll - ExPat Press"],
+  ["9:13 PM", "I Am A Straight Guy"],
+  ["9:15 PM", "alive internet theory"],
+  ["9:15 PM", "Real Life - ear"],
+  ["9:16 PM", "spencer chang"],
+  ["9:16 PM", "ᴘᴇɴᴄᴇʀ ᴄʜᴀɴɢ ༶ Walking on the Internet Together"],
+  ["9:19 PM", "pedro almodovar"],
+  ["9:19 PM", "Mujeres al borde de un ataque de nervios"],
+  ["9:25 PM", "Elizabeth Ellen"],
+  ["9:26 PM", "ann arbor michigan"],
+  ["9:27 PM", "Ann Arbor - Google Maps"],
+  ["9:28 PM", "craigslist ann arbor"],
+  ["9:28 PM", "craigslist brooklyn"],
+  ["9:31 PM", "creepy winky house"],
+  ["9:31 PM", "Viral post praises Burger King in East Providence, Rhode Island, staffed by alt-goth twinks"],
+  ["9:32 PM", "DistroKid"],
+  ["9:35 PM", "Over The Water To Charlie • The Albion Morris Men"],
+  ["9:36 PM", "the albion morris men"],
+
   // 10:22 PM
-  ["10:22 PM","Watch Utopia Season 2 | Prime Video","amazon.com"],
-  ["10:22 PM","Watch 30 Rock Season 3 | Prime Video","amazon.com"],
-  // 12:51 AM
-  ["12:51 AM","MDMA 2011 Directed by Tao Lin","google.com"],
-  ["12:51 AM","Mumblecore (2011) directed by Tao Lin, Megan Boyle • Letterboxd","letterboxd.com"],
-  ["12:51 AM","vimeo","google.com"],
-  ["12:52 AM","Join Vimeo","vimeo.com"],
-  ["12:52 AM","tao lin mdma film full","google.com"],
-  ["12:53 AM","MDMA (2011) - IMDb","imdb.com"],
-  ["12:54 AM","Mumblecore (2011) activity • Letterboxd","letterboxd.com"],
-  ["12:54 AM","Thank You for Not Breeding (2002) directed by Nina Paley","letterboxd.com"],
-  ["12:55 AM","chriscarroll's profile • Letterboxd","letterboxd.com"],
-  ["12:56 AM","A Lake (2008) directed by Philippe Grandrieux • Letterboxd","letterboxd.com"],
-  ["12:57 AM","Search results for i • Letterboxd","letterboxd.com"],
-  ["12:57 AM","Search results for am • Letterboxd","letterboxd.com"],
-  ["12:57 AM","Search results for a • Letterboxd","letterboxd.com"],
-  ["12:58 AM","Search results for faggot • Letterboxd","letterboxd.com"],
-  ["12:58 AM","Search results for gay • Letterboxd","letterboxd.com"],
-  ["12:58 AM","Search results for monkey • Letterboxd","letterboxd.com"],
-  ["12:59 AM","chris's lists • Letterboxd","letterboxd.com"],
-  ["12:59 AM","Edit your 'movies i will probably never intentionally watch' list","letterboxd.com"],
-  ["12:59 AM","Edit your 'lovely cinematography and world design' list","letterboxd.com"],
-  ["1:00 AM","Edit your 'messed up' list","letterboxd.com"],
-  ["1:00 AM","Edit your 'bad.... but good... and sometimes just pretty good' list","letterboxd.com"],
-  ["1:00 AM","chris's lists • Letterboxd","letterboxd.com"],
-  ["1:00 AM","The Midnight Meat Train (2008) • Letterboxd","letterboxd.com"],
-  ["1:02 AM","exaltation","google.com"],
-  ["1:02 AM","excalataion","google.com"],
-  // 1:07–1:15 AM
-  ["1:07 AM","Home / X","x.com"],
-  ["1:08 AM","CENSORED"],
-  ["1:10 AM","jules (@shinyth1ng) / X","x.com"],
-  ["1:11 AM","MDMA (FILM COMPLETO) di Mac Gheri","youtube.com"],
-  ["1:11 AM","mdma mac gheri","google.com"],
-  ["1:12 AM","CENSORED"],
-  ["1:14 AM","Instagram","instagram.com"],
-  ["1:15 AM","Untitled document - Google Docs","docs.google.com"],
-  // 1:18–1:22 AM
-  ["1:18 AM","Image Generation Limit","chatgpt.com"],
-  ["1:19 AM","MS Paint Cute Character Doodles - Grok","grok.com"],
-  ["1:19 AM","grok","google.com"],
-  ["1:19 AM","gyazo","google.com"],
-  ["1:20 AM","green grid complex","google.com"],
-  ["1:20 AM","green grid complex","google.com"],
-  ["1:20 AM","green grid complex","google.com"],
-  ["1:20 AM","green grid complex","google.com"],
-  ["1:20 AM","green grid complex","google.com"],
-  ["1:20 AM","green grid complex","google.com"],
-  ["1:21 AM","Mathematical Tiling and Tessellation | Facebook","facebook.com"],
-  ["1:22 AM","Image Upscaling to 4K Guide - Grok","grok.com"],
-  ["1:22 AM","Gyazo","gyazo.com"],
-  // 1:24–1:27 AM
-  ["1:24 AM","Discover apps - Canva","canva.com"],
-  ["1:26 AM","I Am A Cat - Wikipedia","wikipedia.org"],
-  ["1:26 AM","I Am A Cat, in which writer Natsume Sōseki","google.com"],
-  ["1:27 AM","I ate sushi - chris carroll's blogs and stories","substack.com"],
-  // 1:28–1:38 AM
-  ["1:28 AM","Christianity Restoration and Puritanism","chatgpt.com"],
-  ["1:29 AM","Protestant Reformation","google.com"],
-  ["1:30 AM","droll","google.com"],
-  ["1:30 AM","Interregnum (England) - Wikipedia","wikipedia.org"],
-  ["1:32 AM","Droll - Wikipedia","wikipedia.org"],
-  ["1:32 AM","Stuart Restoration - Wikipedia","wikipedia.org"],
-  ["1:32 AM","Stuart Restoration Overview","chatgpt.com"],
-  ["1:33 AM","Oliver Cromwell","google.com"],
-  ["1:34 AM","Oliver Cromwell - Wikipedia","wikipedia.org"],
-  ["1:34 AM","Western Roman Empire","google.com"],
-  ["1:35 AM","crusades","google.com"],
-  ["1:35 AM","Holy Land - Wikipedia","wikipedia.org"],
-  ["1:35 AM","Crusades - Wikipedia","wikipedia.org"],
-  ["1:35 AM","Pope Urban II - Wikipedia","wikipedia.org"],
-  ["1:35 AM","how often do men think about rome","google.com"],
-  ["1:36 AM","13th century art","google.com"],
-  ["1:36 AM","13th century miniatures","google.com"],
-  ["1:36 AM","Early Realism in Painting","chatgpt.com"],
-  ["1:36 AM","A Burial at Ornans","google.com"],
-  ["1:36 AM","The Stone Breakers","google.com"],
-  ["1:37 AM","The Lamentation (c. 1305","google.com"],
-  ["1:37 AM","The Allegory of Good and Bad Government - Wikipedia","wikipedia.org"],
-  ["1:37 AM","\"The Effects of Good Government\"","google.com"],
-  ["1:38 AM","was scotland a part of rome","google.com"],
-  ["1:38 AM","Scotland during the Roman Empire - Wikipedia","wikipedia.org"],
-  ["1:38 AM","Chris Carroll's website","chriscarroll.uk"],
-  ["1:39 AM","drawings","chriscarroll.uk"],
-  ["1:39 AM","underscores - U ALBUM REVIEW","youtube.com"],
-  // 1:40–1:45 AM
-  ["1:40 AM","Your feed on SoundCloud","soundcloud.com"],
-  ["1:41 AM","sky ferria","google.com"],
-  ["1:41 AM","Sky Ferreira Album Age","chatgpt.com"],
-  ["1:41 AM",", Night Time, My Time","google.com"],
-  ["1:43 AM","sky ferria net worth","google.com"],
-  ["1:44 AM","creepy winky house","creepywinkyhouse.com"],
-  ["1:44 AM","EACH MORNING IS ALL MORNINGS","creepywinkyhouse.com"],
-  ["1:44 AM","A little bit about my powers","creepywinkyhouse.com"],
-  ["1:44 AM","It's really me","creepywinkyhouse.com"],
-  ["1:44 AM","the miracle of psycho command power","creepywinkyhouse.com"],
-  ["1:45 AM","The Moment (2026) directed by Aidan Zamiri • Letterboxd","letterboxd.com"],
-  // 1:49–1:51 AM
-  ["1:49 AM","samuel organ","google.com"],
-  ["1:51 AM","Instagram","instagram.com"],
-  // 2:35–2:50 AM
-  ["2:35 AM","Home / X","x.com"],
-  ["2:36 AM","Nancy Mace","google.com"],
-  ["2:36 AM","Rep. Nancy Mace (@RepNancyMace) / X","x.com"],
-  ["2:37 AM","Nancy Mace young","google.com"],
-  ["2:39 AM","shark light","google.com"],
-  ["2:39 AM","shark light shoal","google.com"],
-  ["2:39 AM","DaVinci (@BiancoDavinci) / X","x.com"],
-  ["2:40 AM","oneohotrix r plus seven loops","youtube.com"],
-  ["2:41 AM","needledrop ear","youtube.com"],
-  ["2:41 AM","underscores - U ALBUM REVIEW","youtube.com"],
-  ["2:43 AM","oneohtrix point never","google.com"],
-  ["2:43 AM","Oneohtrix Point Never","pointnever.com"],
-  ["2:44 AM","where does daniel lopatin live","google.com"],
-  ["2:44 AM","Going Home With Oneohtrix Point Never | The FADER","thefader.com"],
-  ["2:44 AM","wired","google.com"],
-  ["2:45 AM","Yaelle Avtan","google.com"],
-  ["2:45 AM","Alex Hodor-Lee","google.com"],
-  ["2:48 AM","solo 2 man","google.com"],
-  ["2:49 AM","Polymarket's Coming-Out Party in Washington Was a Disaster | WIRED","wired.com"],
-  ["2:49 AM","CENSORED"],
-  ["2:50 AM","Untitled document - Google Docs","docs.google.com"],
-  // 2:51–2:57 AM
-  ["2:51 AM","Oneohtrix Point Never // R Plus Seven \"LOOP 1\"","youtube.com"],
-  ["2:51 AM","Oneohtrix Point Never // R Plus Seven \"LOOP 2\"","youtube.com"],
-  ["2:52 AM","Boards of Canada - Music Is Math","youtube.com"],
-  ["2:53 AM","Dntel \"Dumb Luck\"","youtube.com"],
-  ["2:54 AM","The peoples republic of europe live 1","youtube.com"],
-  ["2:54 AM","The peoples republic of Europe - Monopoly of violence","youtube.com"],
-  ["2:54 AM","The Peoples Republic of Europe - OK Doomer","youtube.com"],
-  ["2:54 AM","The people's republic of europe","google.com"],
-  ["2:55 AM","bernard cohen","google.com"],
-  ["2:55 AM","bernardcohen.net","bernardcohen.net"],
-  ["2:56 AM","Kaskade - Move For Me (HQ)","youtube.com"],
-  ["2:56 AM","Kaskade - Move For Me lyrics","google.com"],
-  ["2:56 AM","Ecstasy","youtube.com"],
-  ["2:57 AM","CENSORED"],
-  ["2:57 AM","\"It's About Not Forgetting\": New Exhibit Captures Images of Hunger & Resilience","cityonahillpress.com"],
-  // 2:58–3:03 AM
-  ["2:58 AM","Kaskade - Move For Me (HQ)","google.com"],
-  ["2:58 AM","instagram","google.com"],
-  ["2:59 AM","kaskade net worth","google.com"],
-  ["2:59 AM","We Belong Here: Brooklyn 2026","posh.vip"],
-  ["3:00 AM","kaskade live","google.com"],
-  ["3:00 AM","Ryan Gary Raddon","google.com"],
-  ["3:01 AM","kaskade steppin out","youtube.com"],
-  ["3:01 AM","Kaskade - Steppin' Out (Official Video)","youtube.com"],
-  ["3:01 AM","Dirty Vegas - Days Go By (Official Video)","youtube.com"],
-  ["3:03 AM","Kaskade - Wikipedia","wikipedia.org"],
-  ["3:03 AM","Ryan Gary Raddon","google.com"],
-  ["3:05 AM","Kaskade Responds To EDM 'Drug Scene'","youtube.com"],
-  ["3:05 AM","Kaskade: EDM's Elder Statesman | Forbes","youtube.com"],
-  ["3:07 AM","FREAKS OF NATURE TOUR - EPISODE 1","youtube.com"],
-  ["3:08 AM","UNDER THE ELECTRIC SKY - Official Trailer","youtube.com"],
-  ["3:09 AM","kaskade documentary","youtube.com"],
-  ["3:09 AM","disability and psychedelics","youtube.com"],
-  // 3:10–3:22 AM
-  ["3:10 AM","mdma lab","google.com"],
-  ["3:10 AM","Two years in an underground MDMA lab","youtube.com"],
-  ["3:10 AM","spring field new jersey","google.com"],
-  ["3:11 AM","vice new form of mdma","google.com"],
-  ["3:11 AM","blue bliss mdma","google.com"],
-  ["3:11 AM","Pillheads, Rejoice: There's a New, Improved Ecstasy","vice.com"],
-  ["3:11 AM","Borax combo - Wikipedia","wikipedia.org"],
-  ["3:13 AM","chris's profile • Letterboxd","letterboxd.com"],
-  ["3:15 AM","has kaskade ever done drugs","google.com"],
-  ["3:15 AM","has deadmau5 ever done drugs","google.com"],
-  ["3:15 AM","has aphex twin done drugs","google.com"],
-  ["3:15 AM","Depression, Isolation and Drug Addiction: When DJing Becomes a Mental Health Issue","vice.com"],
-  ["3:16 AM","erick morillo","google.com"],
-  ["3:16 AM","Erick Morillo - Wikipedia","wikipedia.org"],
-  ["3:16 AM","Has Richard ever spoken if drugs had an influence on him writing his music? : r/aphextwin","reddit.com"],
-  ["3:18 AM","Kaskade Steppin' Out Age","chatgpt.com"],
-  ["3:19 AM","lsd trip described","google.com"],
-  ["3:19 AM","Letterboxd • Social film discovery.","letterboxd.com"],
-  ["3:21 AM","Anthony Bourdain interview on taking LSD","youtube.com"],
-  ["3:21 AM","The Rise and Rise of Psychedelics | High Society","youtube.com"],
-  ["3:21 AM","anthony bourdain wife","google.com"],
-  ["3:22 AM","anthony bourdain wife pedophile","google.com"],
-  ["3:22 AM","asia argento","google.com"],
-  ["3:22 AM","asia argento 17 year old","google.com"],
-  // 3:37–3:57 AM
-  ["3:37 AM","cabniet magazine sina","google.com"],
-  ["3:37 AM","Home / X","x.com"],
-  ["3:38 AM","Cabinet Magazine - Wikipedia","wikipedia.org"],
-  ["3:38 AM","Sina Najafi","google.com"],
-  ["3:38 AM","Sina Najafi - Wikipedia","wikipedia.org"],
-  ["3:39 AM","Bernard Harcourt","google.com"],
-  ["3:39 AM","Sianne Ngai on minor aesthetic categories","google.com"],
-  ["3:39 AM","Zany, Cute, and Interesting: On Sianne Ngai's Minor Aesthetic Categories","bookforum.com"],
-  ["3:40 AM","Karl Marx is related to the Marx Brothers","google.com"],
-  ["3:41 AM","CABINET / Homepage","cabinetmagazine.org"],
-  ["3:41 AM","CABINET / The First Tomato to Know Everything","cabinetmagazine.org"],
-  ["3:42 AM","aesteitcs of silknode","google.com"],
-  ["3:43 AM","silknode","google.com"],
-  ["3:43 AM","Silk","silk.cx"],
-  ["3:43 AM","skins wardrobe tests by @kirabo on Silk","birds.silk.cx"],
-  ["3:44 AM","skins wardrobe tests by @kirabo on Silk","birds.silk.cx"],
-  ["3:45 AM","staff picks | Silk","birds.silk.cx"],
-  ["3:46 AM","dysphemic language","google.com"],
-  ["3:47 AM","Instagram","instagram.com"],
-  ["3:48 AM","Dysphemism - Wikipedia","wikipedia.org"],
-  ["3:48 AM","Mycelium and the Unintentional Community - by Adam Amin","substack.com"],
-  ["3:48 AM","on eloquence - by roro","substack.com"],
-  ["3:50 AM","liturgical","google.com"],
-  ["3:50 AM","memorium","google.com"],
-  ["3:50 AM","memoria","google.com"],
-  ["3:50 AM","memorandum","google.com"],
-  ["3:50 AM","memorabilia","google.com"],
-  ["3:51 AM","nascent","google.com"],
-  ["3:53 AM","incoulated","google.com"],
-  ["3:57 AM","Self-Assessment and Cultural Critique","chatgpt.com"],
-  ["3:58 AM","translate","google.com"],
-  ["3:58 AM","translate large text","google.com"],
-  ["3:58 AM","DeepL Translate","deepl.com"],
-  // 4:00 AM
-  ["4:00 AM","word","google.com"],
-  ["4:00 AM","Create and edit documents for free | Microsoft Word for the Web","word.cloud.microsoft"],
-  ["4:00 AM","Untitled document - Google Docs","docs.google.com"],
-  // 4:03–4:09 AM
-  ["4:03 AM","Stories • Instagram","instagram.com"],
-  ["4:05 AM","Chris carroll (@ihavedisease) / X","x.com"],
-  ["4:05 AM","translate","google.com"],
-  ["4:07 AM","reallystrongchemicals","google.com"],
-  ["4:07 AM","DIE_KITTY_MASCHINE | Substack","diekittymaschine.substack.com"],
-  ["4:09 AM","Instagram","instagram.com"],
-  // 4:11–4:14 AM
-  ["4:11 AM","CENSORED"],
-  ["4:14 AM","wiener420","google.com"],
-  // 4:16 AM
-  ["4:16 AM","Surface Diagram","google.com"],
-  ["4:16 AM","Instagram","instagram.com"],
-  // 4:17–4:30 AM
-  ["4:17 AM","Sentenced (@sentencedlit) / X","x.com"],
-  ["4:18 AM","CENSORED"],
-  ["4:22 AM","horizon zero dawn","google.com"],
-  ["4:22 AM","Horizon Zero Dawn - Wikipedia","wikipedia.org"],
-  ["4:22 AM","Horizon Zero Dawn Twist","chatgpt.com"],
-  ["4:22 AM","Save 40% on Horizon Forbidden West™ Complete Edition on Steam","store.steampowered.com"],
-  ["4:22 AM","Horizon Forbidden West - Wikipedia","wikipedia.org"],
-  ["4:22 AM","Ashly Burch","google.com"],
-  ["4:22 AM","Ashly Burch - Wikipedia","wikipedia.org"],
-  ["4:29 AM","Tessa Cheek","google.com"],
-  ["4:29 AM","Tessa Cheek | Hypocrite Reader","hypocritereader.com"],
-  ["4:29 AM","Tessa Cheek (@tessacheek) / X","x.com"],
-  ["4:29 AM","Writing — Tessa Cheek","tessa-cheek.com"],
-  ["4:30 AM","Cat Pierro","google.com"],
-  ["4:30 AM","Cat Pierro | Hypocrite Reader","hypocritereader.com"],
-  ["4:28 AM","Nakam - Wikipedia","wikipedia.org"],
-  ["4:28 AM","Against Jewish Revenge","google.com"],
-  ["4:30 AM","Why I Call Myself a Socialist | The Nation","thenation.com"],
-  // 4:31–4:40 AM
-  ["4:31 AM","horizon forbidden west ending","youtube.com"],
-  ["4:33 AM","where is horizon forbidden west take place","google.com"],
-  ["4:34 AM","Horizon Forbidden West vs Real Life San Francisco Location Comparison","youtube.com"],
-  ["4:34 AM","Horizon: Forbidden West - Exploring the Ruins of San Francisco Year 2126","youtube.com"],
-  ["4:35 AM","horizon forbidden west san francisco","youtube.com"],
-  ["4:35 AM","Forbidden West Areas","chatgpt.com"],
-  ["4:36 AM","Horizon Forbidden West Interactive Map | Map Genie","mapgenie.io"],
-  ["4:37 AM","horizon forbidden west map","google.com"],
-  ["4:37 AM","horizon forbidden west map vs real life","google.com"],
-  ["4:37 AM","Carlsbad Caverns","google.com"],
-  ["4:37 AM","Another user did this for Zero Dawn, this is my attempt to scale Forbidden West over the real world","reddit.com"],
-  ["4:38 AM","The Crew 2 - Exploring San Francisco - Gameplay","youtube.com"],
-  ["4:39 AM","the crew 2 san francisco","youtube.com"],
-  ["4:39 AM","Assassin's Creed III: Liberation - Wikipedia","wikipedia.org"],
-  ["4:40 AM","I Stalked Cyberpunk's NPCs (Until I Lost My Mind)","youtube.com"],
-  ["4:40 AM","The Tiny Details in RDR2 You Weren't Meant to Notice","youtube.com"],
-  ["4:40 AM","The Tiny Details in Starfield You Weren't Meant to Notice","youtube.com"],
-  // 4:40–4:45 AM
-  ["4:40 AM","The Crew 2 - San Francisco - Lamborghini Aventador Free Roam","youtube.com"],
-  ["4:40 AM","the crew 2 map","youtube.com"],
-  ["4:41 AM","the crew map","google.com"],
-  ["4:41 AM","the crew map vs the crew 2 map","google.com"],
-  ["4:41 AM","The Crew 1 vs The Crew 2 Map Comparison - Removed and Downgraded Locations","youtube.com"],
-  ["4:41 AM","HOW BIG IS THE MAP in The Crew?","youtube.com"],
-  ["4:41 AM","The Crew 2, 5 Years Later","youtube.com"],
-  ["4:42 AM","the crew 2 world bending","google.com"],
-  ["4:42 AM","In The Crew 2, will the world actually bend (inception-style) in game?","reddit.com"],
-  ["4:42 AM","The_Crew subreddit","reddit.com"],
-  ["4:43 AM","gta 4 bushwick","youtube.com"],
-  ["4:43 AM","Ranking Every District in GTA4 From Worst to Best!","youtube.com"],
-  ["4:43 AM","New York: GTA 4 ad !","youtube.com"],
-  ["4:44 AM","gta 4 internet cafe","google.com"],
-  ["4:44 AM","TW@ | GTA Wiki | Fandom","gta.fandom.com"],
-  ["4:45 AM","gta 5 internet cafe","google.com"],
-  ["4:45 AM","GTA V Tw@ Internet Cafe!","youtube.com"],
-  ["4:45 AM","Project Mojave Early Access Launch Trailer","youtube.com"],
-  ["4:45 AM","project mojave","google.com"],
-  // 4:46–4:51 AM
-  ["4:46 AM","stellar blade nude mod","google.com"],
-  ["4:46 AM","Gooner game of the year Stellar Blade's mods are 41% smut","pcgamer.com"],
-  ["4:46 AM","Too Many F*cking Nazis - Official Announcement Trailer","youtube.com"],
-  ["4:46 AM","Study explores post-game depression and emotional impact on players","reddit.com"],
-  ["4:47 AM","Tangy TD","google.com"],
-  ["4:47 AM","After 4 years of work, solo dev breaks down in tears after opening Steam","gamesradar.com"],
-  ["4:47 AM","An indie dev made $250k in a week and EARNED IT. | Tangy TD","youtube.com"],
-  ["4:48 AM","Players Have Too Many Options to Spend $80 on a Video Game - Bloomberg","bloomberg.com"],
-  ["4:49 AM","More than 800 gamers took an exam to prove they could complete an '80s adventure game without peeking at a walkthrough","pcgamer.com"],
-  ["4:49 AM","Hideo Kojima Has an Amazing Idea for a 'Forgetting Game'","reddit.com"],
-  ["4:51 AM","Project 2025 Co-Author Caught On Secret Camera Talking About a National Porn Ban","youtube.com"],
-  // 4:51–4:55 AM
-  ["4:51 AM","Cyberpunk 2 director says extending 2077's opening act makes no sense","reddit.com"],
-  ["4:51 AM","cyberpunk 2077 jackie death","youtube.com"],
-  ["4:53 AM","cyberpunk 2077 building jumper","google.com"],
-  ["4:53 AM","People Jumping off of Buildings? Bug or Extremely Dark Feature? : cyberpunkgame","reddit.com"],
-  ["4:53 AM","cyberpunk 2077 suicide","google.com"],
-  ["4:53 AM","Spamming suicide quickhack feels truly evil : LowSodiumCyberpunk","reddit.com"],
-  ["4:53 AM","Cyberpunk 2077 - Google Search","google.com"],
-  ["4:53 AM","cyberpunk 2077 disassemble soda cans","google.com"],
-  ["4:54 AM","Russell Vought - Wikipedia","wikipedia.org"],
-  ["4:54 AM","Russ Vought","google.com"],
-  ["4:55 AM","List of contributors to Project 2025 - Wikipedia","wikipedia.org"],
-  ["4:55 AM","Daren Bakst","google.com"],
-  ["4:55 AM","Paul Winfree - Wikipedia","wikipedia.org"],
-  ["4:55 AM","Paul Winfree","google.com"],
-  ["4:55 AM","The Heritage Foundation - Wikipedia","wikipedia.org"],
-  ["4:55 AM","214 Massachusetts Avenue NE, Washington, D.C. - Google Maps","google.com"],
-  ["4:55 AM","Heritage Foundation Criticism","chatgpt.com"],
-  // 4:57–5:08 AM
-  ["4:57 AM","Canarsie","google.com"],
-  ["4:57 AM","Canarsie - Google Maps","google.com"],
-  ["4:58 AM","Your location to Canarsie, Brooklyn, NY - Google Maps","google.com"],
-  ["4:58 AM","Prospect Park - Google Maps","google.com"],
-  ["4:58 AM","Your location to Prospect Park, Brooklyn, NY - Google Maps","google.com"],
-  ["4:59 AM","East New York","google.com"],
-  ["4:59 AM","East New York - Google Maps","google.com"],
-  ["4:59 AM","Brooklyn, NY - Google Maps","google.com"],
-  ["5:00 AM","walking around hackney","youtube.com"],
-  ["5:00 AM","Hackney vs Bushwick Size","chatgpt.com"],
-  ["5:02 AM","Cultural And Trendy Walking Tour From Hackney Central To London Fields","youtube.com"],
-  ["5:02 AM","does it snow in londo","google.com"],
-  ["5:03 AM","how cold does it get in london","google.com"],
-  ["5:03 AM","does it snow in london","google.com"],
-  ["5:03 AM","dalston london","youtube.com"],
-  ["5:03 AM","cafe oto london","youtube.com"],
-  ["5:04 AM","Dalston, Hackney, London - 4K Walk","youtube.com"],
-  ["5:04 AM","does it snow in london","google.com"],
-  ["5:06 AM","shard london","google.com"],
-  ["5:06 AM","The Shard - Wikipedia","wikipedia.org"],
-  ["5:06 AM","southwark","google.com"],
-  ["5:06 AM","essex","google.com"],
-  ["5:06 AM","Essex - Google Maps","google.com"],
-  ["5:06 AM","London to Paris Travel Time","chatgpt.com"],
-  ["5:06 AM","Essex - Google Maps","google.com"],
-  ["5:07 AM","eurostar train from london to paris","google.com"],
-  ["5:07 AM","Eurostar - Wikipedia","wikipedia.org"],
-  ["5:07 AM","eurostar train from london to paris wikipedia","google.com"],
-  ["5:08 AM","eurostar train underwater","google.com"],
-  ["5:09 AM","Europe's Underwater Train: Full Eurostar Experience","youtube.com"],
-  ["5:09 AM","This Town SHOCKED Us! Canmore, Alberta (Travel Guide)","youtube.com"],
-  ["5:10 AM","TAORMINA - Is this Italy's MOST Beautiful Town?","youtube.com"],
-  ["5:11 AM","TAORMINA","google.com"],
-  ["5:11 AM","Global Income Above 50k","chatgpt.com"],
-  ["5:12 AM","Dispatch - Official Reveal Trailer | The Game Awards 2024","youtube.com"],
-  ["5:12 AM","dispatch game","youtube.com"],
-  ["5:12 AM","Dispatch Has A Fourth Endgame Result That No One Has Unlocked","thegamer.com"],
-  ["5:12 AM","DISPATCH Gameplay Walkthrough FULL GAME","youtube.com"],
-  ["5:13 AM","any games set in barcelona","google.com"],
-  ["5:13 AM","hpv symptoms in me","google.com"],
-  ["5:14 AM","Wheelman","google.com"],
-  ["5:14 AM","Wheelman (video game) - Wikipedia","wikipedia.org"],
-  ["5:14 AM","Wheelman (film) - Wikipedia","wikipedia.org"],
-  ["5:14 AM","Vin Diesel's Wheelman - Full Game Walkthrough","youtube.com"],
-  ["5:14 AM","Gateshead, England.","google.com"],
-  ["5:14 AM","L.A. Rush - Wikipedia","wikipedia.org"],
-  ["5:15 AM","orwell plaza","google.com"],
-  ["5:15 AM","Midway Studios – Newcastle - Wikipedia","wikipedia.org"],
-  ["5:15 AM","wheelman game","youtube.com"],
-  ["5:16 AM","Category:Video games set in Barcelona - Wikipedia","wikipedia.org"],
-  ["5:16 AM","Skate It - Wikipedia","wikipedia.org"],
-  ["5:16 AM","skate it game","youtube.com"],
-  ["5:16 AM","SKATE IT: The Forgotten Wii and DS Exclusive Skate Game","youtube.com"],
-  ["5:17 AM","The Walking Dead Game You Probably Didn't Get A Chance To Play","youtube.com"],
-  ["5:18 AM","The Edgy Tony Hawk Game That Everyone Forgot About","youtube.com"],
-  ["5:18 AM","tony hawk proving ground baltimore","youtube.com"],
-  ["5:18 AM","Tony Hawk's Project 8 Xbox 360 Trailer","youtube.com"],
-  ["5:19 AM","tony hawk project 8","youtube.com"],
-  ["5:19 AM","tony hawk proving ground","youtube.com"],
-  ["5:19 AM","tony hawk all games","google.com"],
-  ["5:19 AM","Tony Hawk: Vert","google.com"],
-  ["5:19 AM","Tony Hawk's Project 8","google.com"],
-  ["5:19 AM","TONY HAWK'S PROJECT 8 | Xbox 360 Gameplay","youtube.com"],
-  ["5:20 AM","tony hawk skater baltimore","google.com"],
-  ["5:20 AM","New level project : Enhanced Baltimore : THPS","reddit.com"],
-  ["5:20 AM","Baltimore Inner Harbor! Tony Hawk's Proving Ground (PS2)","youtube.com"],
-  ["5:22 AM","blur video game","youtube.com"],
-  ["5:22 AM","Blur PC Gameplay in 4K","youtube.com"],
-  ["5:22 AM","Blur (video game) - Wikipedia","wikipedia.org"],
-  ["5:22 AM","Tony Hawk's Underground Pro : Baltimore Trailer","youtube.com"],
-  ["5:22 AM","Xenia DX12: SSX, perfect performances","youtube.com"],
-  ["5:22 AM","Final Fantasy XV - Exploring Insomnia before its fall","youtube.com"],
-  ["5:23 AM","ffxv entire map","youtube.com"],
-  ["5:23 AM","Flying Across Final Fantasy XV's Map","youtube.com"],
-  ["5:23 AM","Final Fantasy XV: Exploring Altissia with a special Chocobo","youtube.com"],
-  ["5:24 AM","ffxv insomnia","google.com"],
-  ["5:24 AM","How realistic can you make minecraft in 2026?","youtube.com"],
-  ["5:29 AM","can chocobos fly properly","google.com"],
-  ["5:31 AM","Search History Overview","chatgpt.com"],
-  ["5:32 AM","google docs","google.com"],
-  ["5:37 AM","Search History Overview - Google Chrome - Gyazo","gyazo.com"],
-  ["5:38 AM","Untitled document - Google Docs","docs.google.com"],
-  ["5:39 AM","Untitled document - Google Docs - Google Chrome - Gyazo","gyazo.com"],
-  ["5:40 AM","*Untitled - paint.net 4.3.10 - Gyazo","gyazo.com"],
-  ["5:41 AM","Untitled document - Google Docs","docs.google.com"],
+  ["10:22 PM", "Watch Utopia Season 2"],
+  ["10:22 PM", "Watch 30 Rock Season 3"],
+
+  // midnight Letterboxd spiral
+  ["12:51 AM", "MDMA 2011 Directed by Tao Lin"],
+  ["12:51 AM", "Mumblecore (2011) directed by Tao Lin, Megan Boyle"],
+  ["12:52 AM", "tao lin mdma film full"],
+  ["12:53 AM", "MDMA (2011) - IMDb"],
+  ["12:54 AM", "Thank You for Not Breeding (2002) directed by Nina Paley"],
+  ["12:55 AM", "chriscarroll's profile • Letterboxd"],
+  ["12:56 AM", "A Lake (2008) directed by Philippe Grandrieux"],
+  ["12:58 AM", "Search results for faggot • Letterboxd"],
+  ["12:58 AM", "Search results for gay • Letterboxd"],
+  ["1:00 AM", "Edit your 'messed up' list"],
+  ["1:00 AM", "Edit your 'bad.... but good... and sometimes just pretty good' list"],
+  ["1:00 AM", "The Midnight Meat Train (2008)"],
+  ["1:02 AM", "exaltation"],
+
+  // 1 AM continued
+  ["1:07 AM", "Home / X"],
+  ["1:10 AM", "jules (@shinyth1ng) / X"],
+  ["1:11 AM", "MDMA (FILM COMPLETO) di Mac Gheri"],
+  ["1:14 AM", "Instagram"],
+  ["1:15 AM", "Untitled document - Google Docs"],
+  ["1:18 AM", "Image Generation Limit"],
+  ["1:19 AM", "MS Paint Cute Character Doodles - Grok"],
+  ["1:19 AM", "green grid complex"],
+  ["1:21 AM", "Mathematical Tiling and Tessellation"],
+  ["1:22 AM", "Image Upscaling to 4K Guide - Grok"],
+  ["1:24 AM", "Discover apps - Canva"],
+  ["1:26 AM", "I Am A Cat - Wikipedia"],
+  ["1:27 AM", "I ate sushi - chris carroll"],
+
+  // history & art rabbit hole
+  ["1:28 AM", "Christianity Restoration and Puritanism"],
+  ["1:29 AM", "Protestant Reformation"],
+  ["1:30 AM", "droll"],
+  ["1:32 AM", "Interregnum (England)"],
+  ["1:32 AM", "Stuart Restoration"],
+  ["1:33 AM", "Oliver Cromwell"],
+  ["1:34 AM", "Western Roman Empire"],
+  ["1:35 AM", "crusades"],
+  ["1:35 AM", "how often do men think about rome"],
+  ["1:36 AM", "13th century art"],
+  ["1:36 AM", "The Stone Breakers"],
+  ["1:36 AM", "A Burial at Ornans"],
+  ["1:37 AM", "The Lamentation (c. 1305"],
+  ["1:37 AM", "The Allegory of Good and Bad Government"],
+  ["1:38 AM", "was scotland a part of rome"],
+  ["1:38 AM", "Chris Carroll's website"],
+
+  // late night music & sites
+  ["1:40 AM", "Your feed on SoundCloud"],
+  ["1:41 AM", "sky ferria"],
+  ["1:41 AM", "Night Time, My Time"],
+  ["1:43 AM", "sky ferria net worth"],
+  ["1:44 AM", "creepy winky house"],
+  ["1:44 AM", "EACH MORNING IS ALL MORNINGS"],
+  ["1:45 AM", "The Moment (2026) directed by Aidan Zamiri"],
+  ["1:49 AM", "samuel organ"],
+
+  // 2 AM music & politics
+  ["2:35 AM", "Home / X"],
+  ["2:36 AM", "Nancy Mace"],
+  ["2:36 AM", "Nancy Mace young"],
+  ["2:39 AM", "shark light shoal"],
+  ["2:40 AM", "oneohtrix point never r plus seven loops"],
+  ["2:43 AM", "Oneohtrix Point Never"],
+  ["2:44 AM", "where does daniel lopatin live"],
+  ["2:49 AM", "Polymarket's Coming-Out Party in Washington Was a Disaster"],
+  ["2:51 AM", "Oneohtrix Point Never // R Plus Seven \"LOOP 1\""],
+  ["2:52 AM", "Boards of Canada - Music Is Math"],
+  ["2:56 AM", "Kaskade - Move For Me"],
+  ["2:59 AM", "We Belong Here: Brooklyn 2026"],
+  ["3:00 AM", "kaskade live"],
+  ["3:03 AM", "Kaskade - Wikipedia"],
+
+  // 3 AM drug & edm spiral
+  ["3:10 AM", "mdma lab"],
+  ["3:10 AM", "Two years in an underground MDMA lab"],
+  ["3:11 AM", "Pillheads, Rejoice: There's a New, Improved Ecstasy"],
+  ["3:15 AM", "has kaskade ever done drugs"],
+  ["3:15 AM", "has aphex twin done drugs"],
+  ["3:19 AM", "lsd trip described"],
+  ["3:21 AM", "Anthony Bourdain interview on taking LSD"],
+  ["3:22 AM", "asia argento 17 year old"],
+
+  // 3:37 AM theory & aesthetics
+  ["3:37 AM", "Cabinet Magazine"],
+  ["3:38 AM", "Sina Najafi"],
+  ["3:39 AM", "Sianne Ngai on minor aesthetic categories"],
+  ["3:40 AM", "Karl Marx is related to the Marx Brothers"],
+  ["3:41 AM", "CABINET / The First Tomato to Know Everything"],
+  ["3:43 AM", "Silk platform"],
+  ["3:46 AM", "dysphemic language"],
+  ["3:48 AM", "Dysphemism"],
+  ["3:50 AM", "liturgical"],
+  ["3:50 AM", "memorandum"],
+  ["3:51 AM", "nascent"],
+  ["3:53 AM", "inoculated"],
+  ["3:57 AM", "Self-Assessment and Cultural Critique"],
+
+  // 4 AM
+  ["4:00 AM", "Untitled document - Google Docs"],
+  ["4:03 AM", "Stories • Instagram"],
+  ["4:05 AM", "Chris carroll (@ihavedisease) / X"],
+  ["4:07 AM", "reallystrongchemicals"],
+  ["4:07 AM", "DIE_KITTY_MASCHINE"],
+  ["4:16 AM", "Surface Diagram"],
+
+  // 4:20 AM gaming rabbit hole begins
+  ["4:22 AM", "Horizon Zero Dawn"],
+  ["4:22 AM", "Horizon Forbidden West"],
+  ["4:22 AM", "Ashly Burch"],
+  ["4:29 AM", "Tessa Cheek"],
+  ["4:29 AM", "Cat Pierro"],
+  ["4:28 AM", "Nakam"],
+  ["4:30 AM", "Against Jewish Revenge"],
+  ["4:31 AM", "horizon forbidden west ending"],
+  ["4:34 AM", "Horizon: Forbidden West - Exploring the Ruins of San Francisco Year 2126"],
+  ["4:36 AM", "Horizon Forbidden West Interactive Map"],
+  ["4:40 AM", "The Crew 2 - San Francisco"],
+  ["4:43 AM", "gta 4 bushwick"],
+  ["4:46 AM", "stellar blade nude mod"],
+  ["4:47 AM", "Tangy TD"],
+  ["4:51 AM", "cyberpunk 2077 jackie death"],
+  ["4:53 AM", "cyberpunk 2077 suicide"],
+  ["4:54 AM", "Russell Vought"],
+  ["4:55 AM", "Project 2025 contributors"],
+
+  // 4:57 AM geography & late night wandering
+  ["4:57 AM", "Canarsie"],
+  ["4:58 AM", "Prospect Park"],
+  ["4:59 AM", "East New York"],
+  ["5:00 AM", "walking around hackney"],
+  ["5:02 AM", "Dalston london"],
+  ["5:03 AM", "does it snow in london"],
+  ["5:06 AM", "The Shard"],
+  ["5:07 AM", "eurostar train from london to paris"],
+  ["5:09 AM", "Europe's Underwater Train"],
+  ["5:11 AM", "TAORMINA"],
+  ["5:13 AM", "hpv symptoms in me"],
+  ["5:14 AM", "Wheelman video game"],
+  ["5:16 AM", "Skate It"],
+  ["5:19 AM", "tony hawk proving ground baltimore"],
+  ["5:22 AM", "blur video game"],
+  ["5:23 AM", "Final Fantasy XV - Exploring Insomnia"],
+  ["5:24 AM", "How realistic can you make minecraft in 2026"],
+  ["5:31 AM", "Search History Overview"],
+  ["5:38 AM", "Untitled document - Google Docs"],
 ];
 
-// Group by approximate hour block
 function getHourBlock(timeStr) {
-  const pm = timeStr.includes("PM");
-  const am = timeStr.includes("AM");
-  const [h, m] = timeStr.replace(" PM","").replace(" AM","").split(":").map(Number);
-  let hour24 = h;
-  if (pm && h !== 12) hour24 = h + 12;
-  if (am && h === 12) hour24 = 0;
-  return hour24;
+  const [time, period] = timeStr.split(" ");
+  let [h, m] = time.split(":").map(Number);
+  if (period === "PM" && h !== 12) h += 12;
+  if (period === "AM" && h === 12) h = 0;
+  return h;
 }
 
 function formatHourLabel(hour24) {
@@ -652,111 +337,62 @@ function formatHourLabel(hour24) {
   return (hour24 - 12) + " pm";
 }
 
-// Deduplicate consecutive identical entries
-function dedup(entries) {
-  const out = [];
-  for (let i = 0; i < entries.length; i++) {
-    const e = entries[i];
-    // collapse instagram runs
-    if (e[1] === "Instagram" || e[1] === "Stories • Instagram") {
-      let count = 1;
-      while (i + count < entries.length && 
-        (entries[i+count][1] === "Instagram" || entries[i+count][1] === "Stories • Instagram")) {
-        count++;
-      }
-      out.push({time: e[0], text: e[1], domain: e[2], instagramCount: count});
-      i += count - 1;
-    } else {
-      // deduplicate exact same text consecutive
-      if (out.length > 0 && out[out.length-1].text === e[1] && out[out.length-1].domain === e[2]) {
-        out[out.length-1].dupCount = (out[out.length-1].dupCount || 1) + 1;
-      } else {
-        out.push({time: e[0], text: e[1], domain: e[2]});
-      }
-    }
-  }
-  return out;
-}
-
-// Group entries by hour
 const groups = {};
-const groupOrder = [];
-raw.forEach(e => {
-  const h = getHourBlock(e[0]);
-  if (!groups[h]) { groups[h] = []; groupOrder.push(h); }
-  groups[h].push(e);
+raw.forEach(([time, text]) => {
+  const h = getHourBlock(time);
+  if (!groups[h]) groups[h] = [];
+  groups[h].push({time, text});
 });
 
 const timeline = document.getElementById('timeline');
-
-const uniqueHours = [...new Set(groupOrder)].sort((a,b) => {
-  // sort chronologically: 17,18,19,20,21,22,23,0,1,2,3,4,5
+const sortedHours = Object.keys(groups).map(Number).sort((a,b) => {
   const wrap = x => x < 17 ? x + 24 : x;
   return wrap(a) - wrap(b);
 });
 
-uniqueHours.forEach(h => {
+sortedHours.forEach(h => {
   const section = document.createElement('div');
   section.className = 'section';
-  
+
   const label = document.createElement('div');
   label.className = 'hour-label';
-  
-  const entries = dedup(groups[h]);
-  const collapseId = 'grp-' + h;
-  
-  let collapseHtml = '';
-  if (entries.length > 5) {
-    collapseHtml = ` <button class="collapse-btn" onclick="toggleCollapse('${collapseId}', this)">[−]</button>`;
-  }
-  label.innerHTML = formatHourLabel(h) + collapseHtml;
+  label.textContent = formatHourLabel(h);
   section.appendChild(label);
-  
-  const container = document.createElement('div');
-  container.className = 'entries-container';
-  container.id = collapseId;
-  
+
+  const entries = groups[h];
   entries.forEach(e => {
-    if (e.instagramCount) {
-      const div = document.createElement('div');
-      div.className = 'instagram-block';
-      div.textContent = `instagram × ${e.instagramCount}`;
-      container.appendChild(div);
-    } else {
-      const row = document.createElement('div');
-      row.className = 'entry';
-      
-      const timeSpan = document.createElement('span');
-      timeSpan.className = 'entry-time';
-      timeSpan.textContent = e.time.toLowerCase();
-      
-      const textSpan = document.createElement('span');
-      textSpan.className = 'entry-text';
-      textSpan.textContent = e.text + (e.dupCount && e.dupCount > 1 ? ` ×${e.dupCount}` : '');
-      
-      const domainSpan = document.createElement('span');
-      domainSpan.className = 'domain';
-      domainSpan.textContent = e.domain;
-      
-      row.appendChild(timeSpan);
-      row.appendChild(textSpan);
-      row.appendChild(domainSpan);
-      container.appendChild(row);
-    }
+    const row = document.createElement('div');
+    row.className = 'entry';
+
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'entry-time';
+    timeSpan.textContent = e.time.toLowerCase();
+
+    const textSpan = document.createElement('span');
+    textSpan.className = 'entry-text';
+    textSpan.textContent = e.text;
+
+    row.appendChild(timeSpan);
+    row.appendChild(textSpan);
+    section.appendChild(row);
   });
-  
-  section.appendChild(container);
+
   timeline.appendChild(section);
 });
 
-function toggleCollapse(id, btn) {
-  const el = document.getElementById(id);
-  el.classList.toggle('collapsed');
-  btn.textContent = el.classList.contains('collapsed') ? '[+]' : '[−]';
+// Simple live clock (optional, feels nice)
+function updateClock() {
+  const now = new Date();
+  const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+  document.getElementById('clock').textContent = now.toLocaleDateString('en-US', options).toLowerCase();
 }
-
-
+updateClock();
+setInterval(updateClock, 30000);
 </script>
 
+<div class="footer">
+  twelve hours. one night. everything i touched.<br>
+  march 23–24, 2026
+</div>
 </body>
 </html>
