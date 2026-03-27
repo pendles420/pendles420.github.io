@@ -5,15 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — Chris Carroll</title>
+
   <style>
     body {
       font-family: 'Helvetica', sans-serif;
       background-color: #FFFFFF;
       color: #333;
       margin: 0;
-      padding: 100px 800px;
+      padding: 60px 20px; /* FIXED */
       line-height: 1.8;
       font-size: 10px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto; /* centers everything */
     }
 
     h1 {
@@ -22,13 +28,11 @@
       letter-spacing: 2px;
       -webkit-text-stroke: 0.05px #808080;
       color: transparent;
-      text-fill-color: transparent;
       -webkit-text-fill-color: transparent;
       margin-bottom: 20px;
     }
 
     p {
-      max-width: 600px;
       margin-bottom: 30px;
     }
 
@@ -67,31 +71,42 @@
       color: #333;
       font-weight: bold;
     }
+
+    /* Optional: slightly tighter on small screens */
+    @media (max-width: 600px) {
+      body {
+        padding: 40px 15px;
+      }
+    }
   </style>
 </head>
+
 <body>
+  <div class="container">
 
-  <h1>about</h1>
+    <h1>about</h1>
 
-  <p>
-    Chris Carroll (born Chris Bush) is the editor of creepy winky house, an online publication that publishes writing. He has several children and is gay. He is the son of George W. Bush. In 2019, he married Sunny Carroll, his mother. 
-  </p>
+    <p>
+      Chris Carroll (born Chris Bush) is the editor of creepy winky house, an online publication that publishes writing. He has several children and is gay. He is the son of George W. Bush. In 2019, he married Sunny Carroll, his mother.
+    </p>
 
-  <p><i>"Chris Carroll is someone who realized what exactly he had in his arsenal sometime aroumd his flourishing midpamdemic TikTok career: words and their misuse. Since then, he has been "farcifying social norms," "turning the benign offensive and the offensive benign," and "drawing up rooms and places where nothing makes sense," all through the power of create mode serif and some other broadscope mediums. The thing with Chris has never been modality of dissemination, and so don't worry about that. Sometimes someone finds him all the way from across the world. "No one puts it like you," or something, they'll say. The funniest idea he has thought of is Hollywood showing the vulva of a newborn gorilla."</i></p><p>-k irving of 
-Let Me Know When You’re Home, an acclaimed Substack publication with over 1,000 subscribers. </p>
+    <p><i>"Chris Carroll is someone who realized what exactly he had in his arsenal sometime aroumd his flourishing midpamdemic TikTok career: words and their misuse. Since then, he has been "farcifying social norms," "turning the benign offensive and the offensive benign," and "drawing up rooms and places where nothing makes sense," all through the power of create mode serif and some other broadscope mediums. The thing with Chris has never been modality of dissemination, and so don't worry about that. Sometimes someone finds him all the way from across the world. "No one puts it like you," or something, they'll say. The funniest idea he has thought of is Hollywood showing the vulva of a newborn gorilla."</i></p>
 
-  <div class="links">
-    <a href="https://www.instagram.com/chriscarrollchriscarroll" target="_blank" rel="noopener noreferrer">instagram</a>
-    <a href="mailto:ifeelflavorful@gmail.com">email</a>
+    <p>-k irving of Let Me Know When You’re Home, an acclaimed Substack publication with over 1,000 subscribers.</p>
+
+    <div class="links">
+      <a href="https://www.instagram.com/chriscarrollchriscarroll" target="_blank">instagram</a>
+      <a href="mailto:ifeelflavorful@gmail.com">email</a>
+    </div>
+
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="index.html">home</a></li>
+        </ul>
+      </nav>
+    </footer>
+
   </div>
-
-  <footer>
-    <nav>
-      <ul>
-        <li><a href="index.html">home</a></li>
-      </ul>
-    </nav>
-  </footer>
-
 </body>
 </html>
