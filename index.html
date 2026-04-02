@@ -6,183 +6,217 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chris Carroll's website</title>
   <style>
-    body {
-      font-family: 'Helvetica', sans-serif;
-      background-color: #FFFFFF;
-      color: #666;
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 40px 20px;
+      padding: 0;
+    }
+
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #666;
+      font-size: 16.1px;
       line-height: 1.6;
       text-transform: lowercase;
-      font-size: 16.1px;
       overflow-x: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center; /* added */
-      min-height: 100vh; /* added */
     }
 
-    .container {
-      max-width: 900px;
-      width: 100%;
-      padding: 0 20px;
+    a {
+      text-decoration: none;
+      color: #0000EE;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Layout ── */
+    .wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    aside {
+      width: 220px;
+      min-width: 220px;
+      padding: 32px 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 50px;
+      border-right: none;
     }
 
-    header {
-      width: 100%;
+    aside .header-img {
+      width: 120px;
+      height: auto;
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    aside nav {
+      font-size: 13px;
+      line-height: 2.2;
+    }
+
+    aside nav a {
+      display: block;
+      color: #111;
+      font-weight: 400;
+    }
+
+    aside nav a:hover {
+      color: #0000EE;
+      text-decoration: none;
+    }
+
+    aside .kitty {
+      margin-top: auto;
+      padding-top: 24px;
+    }
+
+    aside .kitty img {
+      width: 80px;
+      height: auto;
+      display: block;
+    }
+
+    aside .about-link {
+      font-size: 10px;
+      margin-top: 6px;
+    }
+
+    aside .about-link a {
+      color: #666;
+    }
+
+    /* Main content */
+    main {
+      flex: 1;
+      padding: 32px 40px 60px 40px;
     }
 
     .sections-row {
       display: flex;
       flex-direction: row;
-      width: 150%;
-      gap: 4px;
+      gap: 60px;
     }
 
     .section {
-      color: #666;
-      padding-left: 10px;
       flex: 1;
+      max-width: 340px;
     }
 
-   .section-title {
-  font-size: 2.06em;
-  font-weight: regular;
-  margin-bottom: 12px;
-  text-transform: lowercase;
-  color: transparent;
-  -webkit-text-stroke: 0.6px #808080;
-  text-stroke: 0.20px #808080;
-}
+    .section-title {
+      font-size: 2em;
+      font-weight: 400;
+      color: transparent;
+      -webkit-text-stroke: 0.6px #808080;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
 
     .section a {
-      text-decoration: none;
-      color: #666;
-      font-weight: normal;
-      -webkit-text-stroke: 0;
-      text-stroke: 0;
       display: block;
-      margin-bottom: 5px;
-      transition: color 0.3s ease-in-out;
+      color: #666;
+      margin-bottom: 6px;
+      font-size: 15px;
     }
 
     .section a:hover {
-      color: #0000FF;
-    }
-
-    nav {
-      text-align: center;
-      font-size: 14px;
-      margin-top: 50px;
-      width: 100%;
-    }
-
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      justify-content: flex-start;
-      gap: 20px;
-    }
-
-    nav ul li {
-      display: inline;
-    }
-
-    nav ul li a {
+      color: #0000EE;
       text-decoration: none;
-      color: #666;
-      font-weight: normal;
-      -webkit-text-stroke: 0;
-      text-stroke: 0;
     }
 
-    nav ul li a:hover {
-      color: #0000FF;
+    /* Responsive */
+    @media (max-width: 800px) {
+      .sections-row {
+        flex-direction: column;
+        gap: 36px;
+      }
     }
 
-    .gif-container {
-      text-align: center;
-      width: 100%;
+    @media (max-width: 600px) {
+      aside {
+        width: 160px;
+        min-width: 160px;
+        padding: 20px 16px;
+      }
+      main {
+        padding: 20px 16px 40px;
+      }
     }
 
-    .gif-container img {
-      width: 100px;
-      height: auto;
-    }
-
-    .about-link {
-      font-size: 10px;
-      color: #666;
-      text-align: center;
-      margin-top: 8px;
-    }
-
-    .about-link a {
-      color: #666;
-      text-decoration: none;
-      transition: color 0.3s ease-in-out;
-    }
-
-    .about-link a:hover {
-      color: #0000FF;
+    @media (max-width: 480px) {
+      .wrapper { flex-direction: column; }
+      aside {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      aside .kitty { margin-top: 0; }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+<div class="wrapper">
 
-    <header>
-        <div class="gif-container">
-      <img src="https://i.ibb.co/MDqbczRk/chris-caroll.png" alt="chris carroll's website" />
-    </header>
+  <aside>
+    <img
+      class="header-img"
+      src="https://i.ibb.co/MDqbczRk/chris-caroll.png"
+      alt="chris carroll's website"
+    />
 
+    <nav>
+      <a href="about.html">about</a>
+    </nav>
+
+    <div class="kitty">
+      <img
+        src="https://pbs.twimg.com/media/GWiCasnWUAk31V7?format=png&name=900x900"
+        alt="kitty"
+      />
+    </div>
+  </aside>
+
+  <main>
     <div class="sections-row">
 
-      <!-- Writing Section -->
+      <!-- Writing -->
       <div class="section writing">
         <div class="section-title">writing</div>
-        <a href="https://worldhungermag.com/1439-2/" target="_blank" rel="noopener noreferrer">Self Festival (World Hunger, 2026)</a>
-        <a href="https://expatpress.com/the-experiencer-chris-carroll/" target="_blank" rel="noopener noreferrer">The Experiencer (Expat Press, 2025)</a>
-        <a href="https://charm-school.net/chriscarroll-moles" target="_blank" rel="noopener noreferrer">Moles (Charm School, 2025)</a>
-        <a href="https://chris1.substack.com/p/i-am-a-straight-guy?utm_source=profile&utm_medium=reader2" target="_blank" rel="noopener noreferrer">I Am A Straight Guy (2024)</a>
-        <a href="https://chris1.substack.com/" target="_blank" rel="noopener noreferrer">MY BLOG</a>
-        <a href="https://x.com/ihavedisease" target="_blank" rel="noopener noreferrer">twitter account</a>
+        <a href="https://worldhungermag.com/1439-2/">Self Festival (World Hunger, 2026)</a>
+        <a href="https://expatpress.com/the-experiencer-chris-carroll/">The Experiencer (Expat Press, 2025)</a>
+        <a href="https://charm-school.net/chriscarroll-moles">Moles (Charm School, 2025)</a>
+        <a href="https://chris1.substack.com/p/i-am-a-straight-guy">I Am A Straight Guy (2024)</a>
+        <a href="https://chris1.substack.com/">MY BLOG</a>
+        <a href="https://x.com/ihavedisease">twitter account</a>
       </div>
 
-      <!-- Other Section -->
+      <!-- Other -->
       <div class="section">
         <div class="section-title">other</div>
-        <a href="https://www.youtube.com/watch?v=nMn7dibdHks" target="_blank" rel="noopener noreferrer">Relaxing Google Earth Exploration Video (2023) </a>
-        <a href="https://chriscarroll.uk/photo.html" target="_blank" rel="noopener noreferrer">photos of trash and people (2024-2025)</a>
-        <a href="https://chriscarroll.uk/draw.html" target="_blank" rel="noopener noreferrer">drawings (2025-2026)</a>
-        <a href="https://chriscarroll.uk/iwasonmycomputerfortwelvehours.html" target="_blank" rel="noopener noreferrer">i was on my computer for twelve hours (2026)</a>
-         <a href="https://creepywinkyhouse.com/" target="_blank" rel="noopener noreferrer">creepy winky house (2026-)</a>
+        <a href="https://www.youtube.com/watch?v=nMn7dibdHks">Relaxing Google Earth Exploration Video (2023)</a>
+        <a href="photo.html">photos of trash and people (2024–2025)</a>
+        <a href="draw.html">drawings (2025–2026)</a>
+        <a href="iwasonmycomputerfortwelvehours.html">i was on my computer for twelve hours (2026)</a>
+        <a href="https://creepywinkyhouse.com/">creepy winky house (2026–)</a>
       </div>
 
     </div>
+  </main>
 
-    <div class="gif-container">
-      <img src="https://pbs.twimg.com/media/GWiCasnWUAk31V7?format=png&name=900x900" alt="Glitter Kitty Face GIF" />
-      <div class="about-link">
-        <a href="https://chriscarroll.uk/about" target="_blank" rel="noopener noreferrer">about</a>
-      </div>
-    </div>
-
-    <footer>
-      <nav>
-        <ul>
-        </ul>
-      </nav>
-    </footer>
-
-  </div>
+</div>
 
 </body>
 </html>
