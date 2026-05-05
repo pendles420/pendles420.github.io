@@ -1,108 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="https://i.ibb.co/XrD9y8Jq/e2072737-0213-4668-a900-77ac19758edb.jpg">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Chris Carroll</title>
-
+  <link rel="icon" href="https://i.ibb.co/XrD9y8Jq/e2072737-0213-4668a900-77ac19758edb.jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chris Carroll's website</title>
   <style>
-    body {
-      font-family: 'Helvetica', sans-serif;
-      background-color: #FFFFFF;
-      color: #333;
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 60px 20px; /* FIXED */
-      line-height: 1.8;
-      font-size: 11px;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto; /* centers everything */
-    }
-
-    h1 {
-      font-size: 1em;
-      font-weight: bold;
-      letter-spacing: 2px;
-      -webkit-text-stroke: 0.05px #808080;
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-    }
-
-    p {
-      margin-bottom: 30px;
-    }
-
-    a {
-      color: #333;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-
-    .links {
-      margin-top: 20px;
-    }
-
-    .links a {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    footer {
-      margin-top: 150px;
-    }
-
-    nav ul {
-      list-style-type: none;
       padding: 0;
     }
 
-    nav ul li {
-      display: inline;
-      margin-right: 20px;
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #666;
+      font-size: 14.1px;
+      line-height: 1.6;
+      text-transform: lowercase;
+      overflow-x: hidden;
     }
 
-    nav ul li a {
+    a {
       text-decoration: none;
-      color: #333;
-      font-weight: bold;
+      color: #0000EE;
     }
 
-    /* Optional: slightly tighter on small screens */
-    @media (max-width: 600px) {
-      body {
-        padding: 40px 15px;
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Layout ── */
+    .wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    aside {
+      width: 220px;
+      min-width: 220px;
+      padding: 32px 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      border-right: none;
+    }
+
+    aside .header-img {
+      width: 120px;
+      height: auto;
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    aside nav {
+      font-size: 13px;
+      line-height: 2.2;
+    }
+
+    aside nav a {
+      display: block;
+      color: #111;
+      font-weight: 400;
+    }
+
+    aside nav a:hover {
+      color: #0000EE;
+      text-decoration: none;
+    }
+
+    aside .kitty {
+      margin-top: auto;
+      padding-top: 24px;
+    }
+
+    aside .kitty img {
+      width: 80px;
+      height: auto;
+      display: block;
+    }
+
+    aside .about-link {
+      font-size: 10px;
+      margin-top: 6px;
+    }
+
+    aside .about-link a {
+      color: #666;
+    }
+
+    /* Main content */
+    main {
+      flex: 1;
+      padding: 32px 40px 60px 40px;
+    }
+
+    .sections-row {
+      display: flex;
+      flex-direction: row;
+      gap: 60px;
+    }
+
+    .section {
+      flex: 1;
+      max-width: 340px;
+    }
+
+    .section-title {
+      font-size: 2em;
+      font-weight: 400;
+      color: transparent;
+      -webkit-text-stroke: 0.6px #808080;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .section a {
+      display: block;
+      color: #666;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .section a:hover {
+      color: #0000EE;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .sections-row {
+        flex-direction: column;
+        gap: 36px;
       }
+    }
+
+    @media (max-width: 600px) {
+      aside {
+        width: 160px;
+        min-width: 160px;
+        padding: 20px 16px;
+      }
+      main {
+        padding: 20px 16px 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrapper { flex-direction: column; }
+      aside {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      aside .kitty { margin-top: 0; }
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
 
-    <h1>about</h1>
+<div class="wrapper">
 
-    <p>
-      I live in America. I was born on January 31st, 2000 in Santa Cruz, California. I am working class. I use words, images, and myself to create art. I also don't play by the rules, and I definitely suffer a bit because of that. I apologize for any flaws.
-    </p>
+  <aside>
+    <img
+      class="header-img"
+      src="https://i.ibb.co/PGb0cC92/chris-carroll.png"
+      alt="chris carroll's website"
+    />
 
-    <div class="links">
-      <a href="https://www.instagram.com/chriscarrollchriscarroll" target="_blank">instagram</a>
-      <a href="mailto:ifeelflavorful@gmail.com">email</a>
+    
+    <nav>
+      <a href="about.html">about</a>
+    </nav>
+<nav>
+      <a href="writing.html">writing</a>
+    </nav>
+    
+    <nav>
+      <a href="other.html">other projects</a>
+    </nav>
+    
+    <nav>
+      <a href="resume.html">resume</a>
+    </nav>
+    
+
+    <div class="kitty">
+      <img
+        src="https://pbs.twimg.com/media/GWiCasnWUAk31V7?format=png&name=900x900"
+        alt="kitty"
+      />
     </div>
+  </aside>
 
-    <footer>
-      <nav>
-        <ul>
-          <li><a href="index.html">home</a></li>
-        </ul>
-      </nav>
-    </footer>
+  <main>
+    <div class="section writing">
+        <div class="section-title">about</div>
+        i am a 26 year old artist who lives in new york city. i am poor and have good ideas
+      </div>
+      </div>
+      
+    
+      
 
   </div>
+</body>
+
+  
+    </div>
+  </main>
+
+</div>
+
 </body>
 </html>
