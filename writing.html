@@ -132,38 +132,55 @@
     }
 
     /* Responsive */
-    @media (max-width: 800px) {
-      .sections-row {
-        flex-direction: column;
-        gap: 36px;
-      }
-    }
-
     @media (max-width: 600px) {
-      aside {
-        width: 160px;
-        min-width: 160px;
-        padding: 20px 16px;
-      }
-      main {
-        padding: 20px 16px 40px;
-      }
-    }
+  .wrapper {
+    flex-direction: column;
+  }
 
-    @media (max-width: 480px) {
-      .wrapper { flex-direction: column; }
-      aside {
-        width: 100%;
-        height: auto;
-        position: static;
-        padding: 20px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 20px;
-      }
-      aside .kitty { margin-top: 0; }
-    }
+  aside {
+    width: 100%;
+    height: auto;
+    position: static;
+    padding: 20px 20px 0 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    align-items: start;
+    gap: 0 24px;
+  }
+
+  aside .header-img {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 100px;
+    margin-bottom: 0;
+  }
+
+  aside nav {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 16px;
+    line-height: 1.8;
+  }
+
+  aside nav a {
+    display: inline;
+  }
+
+  aside .kitty {
+    display: none;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .section-title {
+    font-size: 1.4em;
+  }
+}
   </style>
 </head>
 <body>
