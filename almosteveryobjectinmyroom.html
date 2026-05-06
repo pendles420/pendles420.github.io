@@ -14,7 +14,16 @@
     body {
       background-color: #c8a97e;
       font-family: Helvetica, Arial, sans-serif;
-      padding: 60px 48px 80px;
+      padding-top: 0;
+      padding-bottom: 80px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: #c8a97e;
+      padding: 24px 48px;
     }
 
     h1 {
@@ -23,7 +32,6 @@
       font-weight: 400;
       color: white;
       letter-spacing: -0.01em;
-      margin-bottom: 64px;
       text-transform: lowercase;
       text-align: center;
     }
@@ -33,7 +41,8 @@
       flex-direction: column;
       gap: 80px;
       max-width: 340px;
-      margin: 0 auto;
+      margin: 40px auto 0;
+      padding: 0 48px;
     }
 
     .item {
@@ -78,8 +87,9 @@
 </head>
 <body>
 
-  <h1>almost every object in my room</h1>
- 
+  <header>
+    <h1>almost every object in my room</h1>
+  </header>
 
   <div class="grid">
 
@@ -178,8 +188,6 @@
       </div>
       <div class="description">sitting ficus plant</div>
     </div>
-
- 
 
     <!-- Item 14 -->
     <div class="item">
@@ -338,7 +346,7 @@
       <div class="image-placeholder">
        <img src="https://i.ibb.co/XxgwFhZ5/IMG-6414.jpg" alt="image">
       </div>
-      <div class="description">doctor who's tardis in top shelf of closet</div>
+      <div class="description">doctor who tardis in top shelf of closet</div>
     </div>
 
     <!-- Item 34 -->
