@@ -6,10 +6,9 @@
 <title>shop | chris carroll</title>
 <style>
   * { box-sizing: border-box; }
-  html, body { height: 100%; }
+  html, body { height: 100%; background: #ffffff; }
   body {
     margin: 0;
-    background: #ffffff;
     color: #000000;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
@@ -19,6 +18,18 @@
   }
   .shop { width: 100%; max-width: 320px; }
 </style>
+<script>
+  // Make Shopify's checkout open in a new tab instead of a popup window
+  (function () {
+    var originalOpen = window.open;
+    window.open = function (url, name) {
+      if (name === 'checkout') {
+        return originalOpen.call(window, url || '', '_blank');
+      }
+      return originalOpen.apply(window, arguments);
+    };
+  })();
+</script>
 </head>
 <body>
 
@@ -157,9 +168,19 @@
       "button": "Add to cart"
     }
   },
+  "modal": {
+    "styles": {
+      "modal": {
+        "background-color": "#ffffff"
+      }
+    }
+  },
   "option": {},
   "cart": {
     "styles": {
+      "cart": {
+        "background-color": "#ffffff"
+      },
       "button": {
         "font-family": "Arial, sans-serif",
         ":hover": {
@@ -184,6 +205,7 @@
         ":hover": {
           "background-color": "#3651b3"
         },
+        "background-color": "#3c5ac7",
         ":focus": {
           "background-color": "#3651b3"
         }
